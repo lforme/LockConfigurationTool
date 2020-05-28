@@ -1,0 +1,167 @@
+PODS:
+  - Action (4.1.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - Alamofire (5.1.0)
+  - CBPinEntryView (1.7.1)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - CryptoSwift (1.3.1)
+  - Differentiator (4.0.1)
+  - DZNEmptyDataSet (1.8.1)
+  - EFQRCode (5.1.6):
+    - EFQRCode/Core (= 5.1.6)
+  - EFQRCode/Core (5.1.6)
+  - HandyJSON (5.0.1)
+  - IQKeyboardManager (6.5.5)
+  - Kingfisher (5.13.4):
+    - Kingfisher/Core (= 5.13.4)
+  - Kingfisher/Core (5.13.4)
+  - MJRefresh (3.4.1)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
+  - "NSObject+Rx (5.1.0)":
+    - RxSwift (~> 5.1)
+  - PKHUD (5.3.0)
+  - Popover (1.3.0)
+  - PPBadgeViewSwift (3.1.0)
+  - QuickLayout (3.0.0)
+  - ReachabilitySwift (5.0.0)
+  - ReactorKit (2.1.0):
+    - RxSwift (~> 5.0)
+    - WeakMapTable (~> 1.1)
+  - Reusable (4.1.1):
+    - Reusable/Storyboard (= 4.1.1)
+    - Reusable/View (= 4.1.1)
+  - Reusable/Storyboard (4.1.1)
+  - Reusable/View (4.1.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxOptional (4.1.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
+  - SwiftDate (6.1.0)
+  - SwiftEntryKit (1.2.3):
+    - QuickLayout (= 3.0.0)
+  - Then (2.6.0)
+  - "UITextView+Placeholder (1.4.0)"
+  - WeakMapTable (1.1.0)
+
+DEPENDENCIES:
+  - Action
+  - CBPinEntryView
+  - ChameleonFramework
+  - CryptoSwift
+  - DZNEmptyDataSet
+  - EFQRCode
+  - HandyJSON
+  - IQKeyboardManager
+  - Kingfisher
+  - MJRefresh
+  - Moya/RxSwift
+  - "NSObject+Rx"
+  - PKHUD
+  - Popover
+  - PPBadgeViewSwift
+  - ReachabilitySwift
+  - ReactorKit
+  - Reusable (~> 4.1.1)
+  - RxDataSources
+  - RxOptional
+  - SnapKit
+  - SQLite.swift
+  - SwiftDate
+  - SwiftEntryKit
+  - Then
+  - "UITextView+Placeholder"
+
+SPEC REPOS:
+  trunk:
+    - Action
+    - Alamofire
+    - CBPinEntryView
+    - ChameleonFramework
+    - CryptoSwift
+    - Differentiator
+    - DZNEmptyDataSet
+    - EFQRCode
+    - HandyJSON
+    - IQKeyboardManager
+    - Kingfisher
+    - MJRefresh
+    - Moya
+    - "NSObject+Rx"
+    - PKHUD
+    - Popover
+    - PPBadgeViewSwift
+    - QuickLayout
+    - ReachabilitySwift
+    - ReactorKit
+    - Reusable
+    - RxCocoa
+    - RxDataSources
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SQLite.swift
+    - SwiftDate
+    - SwiftEntryKit
+    - Then
+    - "UITextView+Placeholder"
+    - WeakMapTable
+
+SPEC CHECKSUMS:
+  Action: 79e6c5dc91e13eea045ab6744b3e5609086671aa
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  CBPinEntryView: 5a91ba422bd8a38eea587511c92c89b19be78454
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EFQRCode: a7ea2e517912f5bf6ba258b631327a83cd8084a5
+  HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
+  IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
+  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
+  MJRefresh: 3153c59a363159092c08b2177ec3a7d09f90bfaf
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  Popover: 10e1d9528f81d9504df984b7b3f491292bc1822d
+  PPBadgeViewSwift: 18a219a9897f418342c22dd1a54f7b18ac56546b
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
+  Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
+  SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
+  SwiftEntryKit: 340713c2e4a6662c5149629990bf1088bf5f0389
+  Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+  WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
+
+PODFILE CHECKSUM: a8c87ac70a50bdefd15e39a391ac892026543f50
+
+COCOAPODS: 1.9.1
