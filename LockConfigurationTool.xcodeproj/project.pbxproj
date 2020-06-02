@@ -50,6 +50,16 @@
 		9CB05011247E6D71001D6DA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB0500F247E6D71001D6DA2 /* Main.storyboard */; };
 		9CB05013247E6D73001D6DA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB05012247E6D73001D6DA2 /* Assets.xcassets */; };
 		9CB05016247E6D73001D6DA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB05014247E6D73001D6DA2 /* LaunchScreen.storyboard */; };
+		9CB698BE2485F25F005F7F7F /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698BD2485F25F005F7F7F /* ChangePasswordController.swift */; };
+		9CB698C12485FB34005F7F7F /* NavigationSettingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698BF2485FB34005F7F7F /* NavigationSettingStyle.swift */; };
+		9CB698C22485FB34005F7F7F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698C02485FB34005F7F7F /* BaseNavigationController.swift */; };
+		9CB698C524863371005F7F7F /* ConfigureTaskListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698C424863371005F7F7F /* ConfigureTaskListModel.swift */; };
+		9CB698CA24863678005F7F7F /* HomeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698C824863678005F7F7F /* HomeListCell.swift */; };
+		9CB698CB24863678005F7F7F /* HomeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB698C924863678005F7F7F /* HomeListCell.xib */; };
+		9CB698CD24864D88005F7F7F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698CC24864D88005F7F7F /* UIViewController+Extension.swift */; };
+		9CB698CF24864FB7005F7F7F /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */; };
+		9CB698D224868EBB005F7F7F /* DataPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698D024868EBB005F7F7F /* DataPickerController.swift */; };
+		9CB698D324868EBB005F7F7F /* DataPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB698D124868EBB005F7F7F /* DataPickerController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +110,16 @@
 		9CB05012247E6D73001D6DA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB05015247E6D73001D6DA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CB05017247E6D73001D6DA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CB698BD2485F25F005F7F7F /* ChangePasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
+		9CB698BF2485FB34005F7F7F /* NavigationSettingStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSettingStyle.swift; sourceTree = "<group>"; };
+		9CB698C02485FB34005F7F7F /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		9CB698C424863371005F7F7F /* ConfigureTaskListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTaskListModel.swift; sourceTree = "<group>"; };
+		9CB698C824863678005F7F7F /* HomeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListCell.swift; sourceTree = "<group>"; };
+		9CB698C924863678005F7F7F /* HomeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeListCell.xib; sourceTree = "<group>"; };
+		9CB698CC24864D88005F7F7F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
+		9CB698D024868EBB005F7F7F /* DataPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPickerController.swift; sourceTree = "<group>"; };
+		9CB698D124868EBB005F7F7F /* DataPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataPickerController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +191,8 @@
 		9C130D5F247F591D00853084 /* ToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				9CB698D024868EBB005F7F7F /* DataPickerController.swift */,
+				9CB698D124868EBB005F7F7F /* DataPickerController.xib */,
 				9C130D70247F5DF100853084 /* ColorClassification.swift */,
 				9C130D60247F592C00853084 /* LocalArchiver.swift */,
 				9C130D61247F592C00853084 /* ViewLoader.swift */,
@@ -203,6 +225,7 @@
 			children = (
 				9C130D7B247F5FEF00853084 /* AccessTokenModel.swift */,
 				9C130D7D247F615D00853084 /* UserModel.swift */,
+				9CB698C424863371005F7F7F /* ConfigureTaskListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +239,7 @@
 				9C130D82247F6BB400853084 /* Swizzling+UIViewController.swift */,
 				9C130D9C247F716100853084 /* UIView+Extension.swift */,
 				9C130DAE247FA24700853084 /* UIImage+Extension.swift */,
+				9CB698CC24864D88005F7F7F /* UIViewController+Extension.swift */,
 				9C130DB0247FA42100853084 /* Empty+UIViewController.swift */,
 			);
 			path = Extension;
@@ -243,6 +267,8 @@
 		9C130DA0247F929E00853084 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9CB698C72486343B005F7F7F /* Views */,
+				9CB698C624863422005F7F7F /* ViewModels */,
 				9C130DA8247F933B00853084 /* HomeController.swift */,
 				9C130DA2247F92BF00853084 /* Home.storyboard */,
 			);
@@ -253,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				9C130DA6247F92DF00853084 /* MyController.swift */,
+				9CB698BD2485F25F005F7F7F /* ChangePasswordController.swift */,
 				9C130DA4247F92C800853084 /* My.storyboard */,
 			);
 			path = My;
@@ -287,12 +314,31 @@
 				9C130D5B247F57AD00853084 /* Controllers */,
 				9CB05009247E6D71001D6DA2 /* AppDelegate.swift */,
 				9C130D59247F548800853084 /* RootViewController.swift */,
+				9CB698C02485FB34005F7F7F /* BaseNavigationController.swift */,
+				9CB698BF2485FB34005F7F7F /* NavigationSettingStyle.swift */,
 				9CB0500F247E6D71001D6DA2 /* Main.storyboard */,
 				9CB05012247E6D73001D6DA2 /* Assets.xcassets */,
 				9CB05014247E6D73001D6DA2 /* LaunchScreen.storyboard */,
 				9CB05017247E6D73001D6DA2 /* Info.plist */,
 			);
 			path = LockConfigurationTool;
+			sourceTree = "<group>";
+		};
+		9CB698C624863422005F7F7F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9CB698C72486343B005F7F7F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CB698C824863678005F7F7F /* HomeListCell.swift */,
+				9CB698C924863678005F7F7F /* HomeListCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B1F349A258E9731393062461 /* Frameworks */ = {
@@ -368,7 +414,9 @@
 				9C130DA3247F92BF00853084 /* Home.storyboard in Resources */,
 				9CB05016247E6D73001D6DA2 /* LaunchScreen.storyboard in Resources */,
 				9CB05013247E6D73001D6DA2 /* Assets.xcassets in Resources */,
+				9CB698D324868EBB005F7F7F /* DataPickerController.xib in Resources */,
 				9CB05011247E6D71001D6DA2 /* Main.storyboard in Resources */,
+				9CB698CB24863678005F7F7F /* HomeListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,21 +469,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CB698BE2485F25F005F7F7F /* ChangePasswordController.swift in Sources */,
 				9C130DA7247F92DF00853084 /* MyController.swift in Sources */,
 				9C130D83247F6BB400853084 /* Swizzling+UIViewController.swift in Sources */,
 				9C130D9D247F716100853084 /* UIView+Extension.swift in Sources */,
 				9C130D5A247F548800853084 /* RootViewController.swift in Sources */,
+				9CB698D224868EBB005F7F7F /* DataPickerController.swift in Sources */,
 				9C130D75247F5E7000853084 /* NetworkDiskStorage.swift in Sources */,
 				9C130D8F247F6FDD00853084 /* RegistrationRecoveryService.swift in Sources */,
 				9C130D69247F5A9600853084 /* NetworkInterfaceImplement.swift in Sources */,
 				9C130D6B247F5C5F00853084 /* RxMoyaProvider.swift in Sources */,
+				9CB698C524863371005F7F7F /* ConfigureTaskListModel.swift in Sources */,
 				9C130DAB247F976600853084 /* CompositeAppDelegate.swift in Sources */,
+				9CB698C12485FB34005F7F7F /* NavigationSettingStyle.swift in Sources */,
 				9C130D9B247F712900853084 /* PKHud+Rx.swift in Sources */,
 				9C130D99247F703A00853084 /* ObjectAssociation.swift in Sources */,
 				9C130D76247F5E7000853084 /* NetworkMetaDb.swift in Sources */,
 				9C130D86247F6FD600853084 /* CountdownButton.swift in Sources */,
 				9C130D80247F683500853084 /* NetworkAPI.swift in Sources */,
 				9C130D6F247F5CE000853084 /* LoadingPlugin.swift in Sources */,
+				9CB698CD24864D88005F7F7F /* UIViewController+Extension.swift in Sources */,
 				9C130D9F247F75BC00853084 /* StaticConst.swift in Sources */,
 				9C130D65247F59C500853084 /* NetworkingEnvironment.swift in Sources */,
 				9C130D6D247F5CCA00853084 /* AppErrorDomain.swift in Sources */,
@@ -445,15 +498,18 @@
 				9C130D63247F592C00853084 /* ViewLoader.swift in Sources */,
 				9C130D95247F6FE600853084 /* RegisterForgetController.swift in Sources */,
 				9C130DAF247FA24700853084 /* UIImage+Extension.swift in Sources */,
+				9CB698C22485FB34005F7F7F /* BaseNavigationController.swift in Sources */,
 				9C130D7E247F615D00853084 /* UserModel.swift in Sources */,
 				9C130D79247F5F1100853084 /* LCUser.swift in Sources */,
 				9CB0500A247E6D71001D6DA2 /* AppDelegate.swift in Sources */,
 				9C130D71247F5DF100853084 /* ColorClassification.swift in Sources */,
 				9C130D8E247F6FDD00853084 /* LoginService.swift in Sources */,
 				9C130D67247F5A4D00853084 /* NetworkInterface.swift in Sources */,
+				9CB698CA24863678005F7F7F /* HomeListCell.swift in Sources */,
 				9C130DAD247F977900853084 /* AppearanceAppDelegate.swift in Sources */,
 				9C130D62247F592C00853084 /* LocalArchiver.swift in Sources */,
 				9C130DA9247F933B00853084 /* HomeController.swift in Sources */,
+				9CB698CF24864FB7005F7F7F /* HomeViewReactor.swift in Sources */,
 				9C130D97247F701F00853084 /* UITextField+Extension.swift in Sources */,
 				9C130D8C247F6FDD00853084 /* RegisPwdViewModel.swift in Sources */,
 				9C130D8D247F6FDD00853084 /* LoginViewReactor.swift in Sources */,

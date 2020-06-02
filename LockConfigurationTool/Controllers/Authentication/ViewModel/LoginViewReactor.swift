@@ -58,10 +58,12 @@ final class LoginViewReactor: Reactor {
             
         case .login:
             
-            let getUser = AuthAPI.requestMapJSON(.login(userName: self.currentState.phone, password: self.currentState.password), classType: AccessTokenModel.self).flatMapLatest { token -> Observable<UserModel> in
+            let p = self.currentState.phone.replacingOccurrences(of: " ", with: "")
+            
+            let getUser = AuthAPI.requestMapJSON(.login(userName: p, password: self.currentState.password), classType: AccessTokenModel.self).flatMapLatest { token -> Observable<UserModel> in
                 
                 LCUser.current().token = token
-                return .just(UserModel())
+                return BusinessAPI.requestMapJSON(.user, classType: UserModel.self)
             }
             
             return Observable.concat([
@@ -71,7 +73,7 @@ final class LoginViewReactor: Reactor {
                         return Mutation.setLoginResult( AppError.reason("无法获取用户信息"), nil)
                     }
                     
-        
+                    
                     return Mutation.setLoginResult(nil, user)
                 }).catchError({ (error) -> Observable<Mutation> in
                     if let e = error as? AppError {

@@ -12,7 +12,15 @@ import PKHUD
 import RxCocoa
 import RxSwift
 
-class RegisterForgetController: UITableViewController {
+class RegisterForgetController: UITableViewController, NavigationSettingStyle {
+    
+    var backgroundColor: UIColor? {
+        return ColorClassification.viewBackground.value
+    }
+    
+    var isLargeTitle: Bool {
+        return true
+    }
     
     @IBOutlet weak var cell1: UITableViewCell!
     @IBOutlet weak var cell2: UITableViewCell!

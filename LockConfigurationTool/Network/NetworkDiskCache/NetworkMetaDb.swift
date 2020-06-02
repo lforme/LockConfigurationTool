@@ -26,7 +26,7 @@ final class NetworkMetaDb {
     private var lock = pthread_rwlock_t()
     private let queue = DispatchQueue(label: "com.networkMetaDb.rw", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem)
     private let kDatabaseName = "cachedb.sqlite3"
-    private let kTableName = "networkcache"
+    private let kTableName = "networkcacheLC"
     
     deinit {
         pthread_rwlock_destroy(&lock)
@@ -87,7 +87,7 @@ extension NetworkMetaDb {
                         this.key <- key,
                         this.value <- value,
                         this.accessTime <- Date(),
-                        this.accountId <- LCUser.current().user?.accountID
+                        this.accountId <- LCUser.current().user?.id
                     )) > 0 {
                         result = true
                         print("写入成功: \(result)")
@@ -97,7 +97,7 @@ extension NetworkMetaDb {
                             this.value <- value,
                             this.accessTime <- Date(),
                             this.expirationTime <- Date() + 7.days,
-                            this.accountId <- LCUser.current().user?.accountID
+                            this.accountId <- LCUser.current().user?.id
                         ))
                         
                         result = (rowid > Int64(0)) ? true : false
@@ -122,7 +122,7 @@ extension NetworkMetaDb {
         queue.sync(flags: .barrier) {
             let query = self.table.select(self.table[*])
                 .filter(self.key == key)
-                .filter(self.accountId == LCUser.current().user?.accountID)
+                .filter(self.accountId == LCUser.current().user?.id)
                 .limit(1)
             
             do {

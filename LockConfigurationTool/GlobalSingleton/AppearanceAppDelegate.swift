@@ -15,11 +15,16 @@ final class AppearanceAppDelegate: AppDelegateType {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        self.setupKeyborad()
-        self.setupHUD()
+        setupNetworkEnvironment()
+        setupKeyborad()
+        setupHUD()
         setupNavigationStyle()
         
         return true
+    }
+    
+    private func setupNetworkEnvironment() {
+        ServerHost.shared.environment = .dev
     }
     
     private func setupKeyborad() {

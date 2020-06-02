@@ -14,7 +14,7 @@ import SnapKit
 
 class RootViewController: UIViewController {
     
-    fileprivate var loginVC: UINavigationController?
+    fileprivate var loginVC: BaseNavigationController?
     fileprivate var rootTabbarVC: UITabBarController?
     
     fileprivate var _statusBarStyle: UIStatusBarStyle = .default {
@@ -32,7 +32,6 @@ class RootViewController: UIViewController {
         
         observerLoginStatus()
         observeStatusBarChanged()
-        
     }
     
     
@@ -63,7 +62,8 @@ class RootViewController: UIViewController {
             item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : ColorClassification.primary.value, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)], for: .selected)
             vc.tabBarItem = item
             
-            let navigationVC = UINavigationController(rootViewController: vc)
+            let navigationVC = BaseNavigationController(rootViewController: vc)
+            
             return navigationVC
         }
         
@@ -72,7 +72,6 @@ class RootViewController: UIViewController {
         self.rootTabbarVC = tabBarVC
         self.view.addSubview(rootTabbarVC!.view)
         self.addChild(rootTabbarVC!)
-        
     }
     
     private func showLoginVC() {
@@ -81,7 +80,7 @@ class RootViewController: UIViewController {
         rootTabbarVC = nil
         
         let temp: LoginViewController = ViewLoader.Storyboard.controller(from: "Login")
-        loginVC = UINavigationController(rootViewController: temp)
+        loginVC = BaseNavigationController(rootViewController: temp)
         self.view.addSubview(loginVC!.view)
         loginVC?.view.snp.makeConstraints({ (maker) in
             maker.edges.equalToSuperview()
@@ -125,12 +124,11 @@ extension RootViewController {
             .observeOn(MainScheduler.instance)
             .takeUntil(rx.deallocated)
             .subscribe(onNext: {[weak self] (isLogin) in
-                //                if isLogin {
-                //                    self?.showHomeTabbar()
-                //                } else {
-                //                    self?.showLoginVC()
-                //                }
-                self?.showHomeTabbar()
+                if isLogin {
+                    self?.showHomeTabbar()
+                } else {
+                    self?.showLoginVC()
+                }
                 }, onError: { (error) in
                     PKHUD.sharedHUD.rx.showError(error)
             })

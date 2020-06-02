@@ -33,6 +33,7 @@ class LCUser {
             guard let entity = newValue?.toJSONString() else { return }
             lock.lock()
             LocalArchiver.save(key: LCUser.Keys.token.rawValue, value: entity)
+            changeableToken.accept(newValue)
             lock.unlock()
         }
         
@@ -47,6 +48,7 @@ class LCUser {
         set {
             guard let entity = newValue?.toJSONString() else { return }
             lock.lock()
+            changeableUserInfo.accept(newValue)
             LocalArchiver.save(key: LCUser.Keys.userInfo.rawValue, value: entity)
             lock.unlock()
         }
@@ -77,13 +79,19 @@ class LCUser {
             AuthAPI.requestMapBool(.logout(token: t)).subscribe().disposed(by: disposeBag)
         }
         
-        let diskCache = NetworkDiskStorage(autoCleanTrash: true, path: "network")
-        let deleteDb = diskCache.deleteValueBy(user?.accountID)
-        print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
+        if let accountID = user?.id {
+            let diskCache = NetworkDiskStorage(autoCleanTrash: true, path: "network")
+            let deleteDb = diskCache.deleteValueBy(accountID)
+            print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
+        }
+        
         Keys.allCases.forEach {
             print("已删除Key:\($0.rawValue)")
             LocalArchiver.remove(key: $0.rawValue)
         }
+        
+        changeableUserInfo.accept(nil)
+        changeableUserInfo.accept(nil)
     }
     
 }

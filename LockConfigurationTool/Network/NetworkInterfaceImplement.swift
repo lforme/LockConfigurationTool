@@ -49,7 +49,7 @@ extension AuthenticationInterface: TargetType {
         case let .refreshToken(token):
             return "/login/refresh_token/\(token)"
         case let .logout(token):
-            return "/login/logtou/\(token)"
+            return "/login/logout/\(token)"
         }
     }
     
@@ -62,7 +62,7 @@ extension AuthenticationInterface: TargetType {
                 "password": password
             ]
         case let .registeriOS(phone, password, msmCode):
-            return ["password": password, "phone": phone, "verificationCode": msmCode]
+            return ["password": password, "phone": phone, "verificationCode": msmCode, "userType": 1]
             
         case let .forgetPasswordiOS(phone, password, msmCode):
             return ["password": password, "phone": phone, "verificationCode": msmCode]
@@ -94,5 +94,76 @@ extension AuthenticationInterface: TargetType {
         default:
             return Data(base64Encoded: "业务测试数据") ?? Data()
         }
+    }
+}
+
+
+
+extension BusinessInterface: TargetType {
+    
+    var sampleData: Data {
+        switch self {
+        default:
+            return Data()
+        }
+    }
+    
+    var baseURL: URL {
+        return URL(string: ServerHost.shared.environment.host)!
+    }
+    
+    var headers: [String : String]? {
+        guard let entiy = LCUser.current().token else { return nil }
+        
+        guard let token = entiy.accessToken, let type = entiy.tokenType else {
+            return nil
+        }
+        return ["Authorization": type + token]
+    }
+    
+    var method: Moya.Method {
+        switch self {
+        case .editUser:
+            return .put
+        case .user:
+            return .get
+        default:
+            return .post
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .editUser:
+            return "/user"
+        case .user:
+            return "/user"
+        case .hardwareLockList:
+            return "/hardware_lock_config/page"
+        }
+    }
+    
+    var parameters: [String: Any]? {
+        switch self {
+        case let .editUser(parameter):
+            return parameter.toJSON()
+            
+        case let .hardwareLockList(pageSize, pageIndex, startTime, endTime):
+            return ["currentPage": pageIndex, "pageSize": pageSize, "startTime": startTime, "endTime": endTime]
+            
+        default:
+            return nil
+        }
+    }
+    
+    var task: Task {
+        let requestParameters = parameters ?? [:]
+        var encoding: ParameterEncoding = JSONEncoding.default
+        
+        if self.method == .get {
+            encoding = URLEncoding.default
+            return .requestParameters(parameters: requestParameters, encoding: encoding)
+        }
+        return .requestParameters(parameters: requestParameters, encoding: encoding)
     }
 }
