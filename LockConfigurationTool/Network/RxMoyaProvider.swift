@@ -79,7 +79,7 @@ private extension RxMoyaProvider {
     
     private func useCacheWhenErrorOccurred(_ token: Target) -> Observable<Response> {
         
-        if let interface = token as? AuthenticationInterface {
+        if let interface = token as? BusinessInterface {
             var key = interface.path + interface.method.rawValue
             if let param = interface.parameters?.sorted(by: { (a, b) -> Bool in
                 return a.key < b.key
@@ -146,7 +146,7 @@ private extension RxMoyaProvider {
                 } else if res.statusCode == 200 {
                     
                     // 写入缓存
-                    if let interface = token as? AuthenticationInterface {
+                    if let interface = token as? BusinessInterface {
                         var key = interface.path + interface.method.rawValue
                         if let param = interface.parameters?.sorted(by: { (a, b) -> Bool in
                             return a.key < b.key

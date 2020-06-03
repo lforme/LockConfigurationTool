@@ -43,6 +43,7 @@ class RootViewController: UIViewController {
         let tabBarVC = UITabBarController()
         
         let homeVC: HomeController = ViewLoader.Storyboard.controller(from: "Home")
+    
         let homeTabbarItemNormal = UIImage(named: "home_normal_item")
         let homeTabbarItemSelect = UIImage(named: "home_select_item")
         
@@ -123,6 +124,7 @@ extension RootViewController {
         LCUser.current().observedIsLogin
             .observeOn(MainScheduler.instance)
             .takeUntil(rx.deallocated)
+            .distinctUntilChanged()
             .subscribe(onNext: {[weak self] (isLogin) in
                 if isLogin {
                     self?.showHomeTabbar()

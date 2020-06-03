@@ -29,7 +29,7 @@ extension NavigationSettingStyle {
     }
     
     var isLargeTitle: Bool {
-        return false
+        return true
     }
     
     var itemColor: UIColor? {

@@ -30,14 +30,14 @@ enum ColorClassification {
             if #available(iOS 13.0, *) {
                 let color = UIColor { (collection) -> UIColor in
                     if collection.userInterfaceStyle == .dark {
-                        return #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2078431373, alpha: 1)
+                        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     } else {
-                        return #colorLiteral(red: 0.3254901961, green: 0.5843137255, blue: 0.9137254902, alpha: 1)
+                        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                     }
                 }
                 return color
             } else {
-                return #colorLiteral(red: 0.3254901961, green: 0.5843137255, blue: 0.9137254902, alpha: 1)
+                return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             }
             
         case .navigationItem:
@@ -46,12 +46,12 @@ enum ColorClassification {
                     if collection.userInterfaceStyle == .dark {
                         return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                     } else {
-                        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     }
                 }
                 return color
             } else {
-                return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             }
             
         case .viewBackground:

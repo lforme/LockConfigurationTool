@@ -40,7 +40,11 @@ class MyController: UITableViewController {
     func bind() {
         versionLabel.text = ServerHost.shared.environment.description
         
-        let logoutAction = Action<(), Bool> { (_) -> Observable<Bool> in
+        let logoutAction = Action<Void?, Bool> { (tap) -> Observable<Bool> in
+            
+            if tap == nil {
+                return .empty()
+            }
             
             guard let token = LCUser.current().token?.accessToken else {
                 return .error(AppError.reason("发生未知错误, token is nil."))
@@ -49,7 +53,13 @@ class MyController: UITableViewController {
             return AuthAPI.requestMapBool(.logout(token: token))
         }
         
-        logoutButton.rx.bind(to: logoutAction, input: ())
+        logoutButton.rx.tap.flatMapLatest {[unowned self] (_) in
+            self.showActionSheet(title: "退出登录", message: "确定要退出登录吗?", buttonTitles: ["退出", "取消"], highlightedButtonIndex: 1)
+        }.subscribe(onNext: { (index) in
+            if index == 0 {
+                logoutAction.execute(())
+            }
+        }).disposed(by: rx.disposeBag)
         
         logoutAction.errors.subscribe(onNext: { (error) in
             PKHUD.sharedHUD.rx.showActionError(error)

@@ -60,6 +60,22 @@
 		9CB698CF24864FB7005F7F7F /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */; };
 		9CB698D224868EBB005F7F7F /* DataPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB698D024868EBB005F7F7F /* DataPickerController.swift */; };
 		9CB698D324868EBB005F7F7F /* DataPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB698D124868EBB005F7F7F /* DataPickerController.xib */; };
+		9CE3AB802487346500A23E5C /* TaskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB7F2487346500A23E5C /* TaskDetailController.swift */; };
+		9CE3AB832487465400A23E5C /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB812487465400A23E5C /* ScanQRViewController.swift */; };
+		9CE3AB842487465400A23E5C /* ScanQRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE3AB822487465400A23E5C /* ScanQRViewController.xib */; };
+		9CE3AB8624874F0B00A23E5C /* TaskDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB8524874F0B00A23E5C /* TaskDetailViewModel.swift */; };
+		9CE3AB8824874FED00A23E5C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB8724874FED00A23E5C /* UIButton+Extension.swift */; };
+		9CE3AB8A2487529F00A23E5C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB892487529F00A23E5C /* String+Extension.swift */; };
+		9CE3AB912487AD9700A23E5C /* NORData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB8D2487AD9700A23E5C /* NORData.swift */; };
+		9CE3AB922487AD9700A23E5C /* NORServiceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB8E2487AD9700A23E5C /* NORServiceIdentifiers.swift */; };
+		9CE3AB932487AD9700A23E5C /* PPBluetoothScanEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB8F2487AD9700A23E5C /* PPBluetoothScanEntity.swift */; };
+		9CE3AB942487AD9700A23E5C /* BluetoothPapa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB902487AD9700A23E5C /* BluetoothPapa.swift */; };
+		9CE3ABA32487B17A00A23E5C /* LockStartScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB982487B17A00A23E5C /* LockStartScanViewModel.swift */; };
+		9CE3ABA42487B17A00A23E5C /* LockBindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3AB992487B17A00A23E5C /* LockBindViewModel.swift */; };
+		9CE3ABA92487B17A00A23E5C /* InitialLock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE3AB9E2487B17A00A23E5C /* InitialLock.storyboard */; };
+		9CE3ABAB2487B17A00A23E5C /* SelectLockTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3ABA02487B17A00A23E5C /* SelectLockTypeController.swift */; };
+		9CE3ABAC2487B17A00A23E5C /* LockStartScanningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3ABA12487B17A00A23E5C /* LockStartScanningController.swift */; };
+		9CE3ABAE2487B34E00A23E5C /* LockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3ABAD2487B34E00A23E5C /* LockModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +136,22 @@
 		9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
 		9CB698D024868EBB005F7F7F /* DataPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPickerController.swift; sourceTree = "<group>"; };
 		9CB698D124868EBB005F7F7F /* DataPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataPickerController.xib; sourceTree = "<group>"; };
+		9CE3AB7F2487346500A23E5C /* TaskDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
+		9CE3AB812487465400A23E5C /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
+		9CE3AB822487465400A23E5C /* ScanQRViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanQRViewController.xib; sourceTree = "<group>"; };
+		9CE3AB8524874F0B00A23E5C /* TaskDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewModel.swift; sourceTree = "<group>"; };
+		9CE3AB8724874FED00A23E5C /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		9CE3AB892487529F00A23E5C /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		9CE3AB8D2487AD9700A23E5C /* NORData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NORData.swift; sourceTree = "<group>"; };
+		9CE3AB8E2487AD9700A23E5C /* NORServiceIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NORServiceIdentifiers.swift; sourceTree = "<group>"; };
+		9CE3AB8F2487AD9700A23E5C /* PPBluetoothScanEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPBluetoothScanEntity.swift; sourceTree = "<group>"; };
+		9CE3AB902487AD9700A23E5C /* BluetoothPapa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPapa.swift; sourceTree = "<group>"; };
+		9CE3AB982487B17A00A23E5C /* LockStartScanViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockStartScanViewModel.swift; sourceTree = "<group>"; };
+		9CE3AB992487B17A00A23E5C /* LockBindViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockBindViewModel.swift; sourceTree = "<group>"; };
+		9CE3AB9E2487B17A00A23E5C /* InitialLock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InitialLock.storyboard; sourceTree = "<group>"; };
+		9CE3ABA02487B17A00A23E5C /* SelectLockTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLockTypeController.swift; sourceTree = "<group>"; };
+		9CE3ABA12487B17A00A23E5C /* LockStartScanningController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockStartScanningController.swift; sourceTree = "<group>"; };
+		9CE3ABAD2487B34E00A23E5C /* LockModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +199,7 @@
 		9C130D5D247F586E00853084 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				9CE3AB952487B17A00A23E5C /* InitialLock */,
 				9C130DA1247F92B100853084 /* My */,
 				9C130DA0247F929E00853084 /* Home */,
 			);
@@ -191,8 +224,11 @@
 		9C130D5F247F591D00853084 /* ToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				9CE3AB8B2487AD9700A23E5C /* Bluepapa */,
 				9CB698D024868EBB005F7F7F /* DataPickerController.swift */,
 				9CB698D124868EBB005F7F7F /* DataPickerController.xib */,
+				9CE3AB812487465400A23E5C /* ScanQRViewController.swift */,
+				9CE3AB822487465400A23E5C /* ScanQRViewController.xib */,
 				9C130D70247F5DF100853084 /* ColorClassification.swift */,
 				9C130D60247F592C00853084 /* LocalArchiver.swift */,
 				9C130D61247F592C00853084 /* ViewLoader.swift */,
@@ -226,6 +262,7 @@
 				9C130D7B247F5FEF00853084 /* AccessTokenModel.swift */,
 				9C130D7D247F615D00853084 /* UserModel.swift */,
 				9CB698C424863371005F7F7F /* ConfigureTaskListModel.swift */,
+				9CE3ABAD2487B34E00A23E5C /* LockModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,6 +278,8 @@
 				9C130DAE247FA24700853084 /* UIImage+Extension.swift */,
 				9CB698CC24864D88005F7F7F /* UIViewController+Extension.swift */,
 				9C130DB0247FA42100853084 /* Empty+UIViewController.swift */,
+				9CE3AB8724874FED00A23E5C /* UIButton+Extension.swift */,
+				9CE3AB892487529F00A23E5C /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -270,6 +309,7 @@
 				9CB698C72486343B005F7F7F /* Views */,
 				9CB698C624863422005F7F7F /* ViewModels */,
 				9C130DA8247F933B00853084 /* HomeController.swift */,
+				9CE3AB7F2487346500A23E5C /* TaskDetailController.swift */,
 				9C130DA2247F92BF00853084 /* Home.storyboard */,
 			);
 			path = Home;
@@ -328,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				9CB698CE24864FB7005F7F7F /* HomeViewReactor.swift */,
+				9CE3AB8524874F0B00A23E5C /* TaskDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -339,6 +380,45 @@
 				9CB698C924863678005F7F7F /* HomeListCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9CE3AB8B2487AD9700A23E5C /* Bluepapa */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3AB8C2487AD9700A23E5C /* Utilities */,
+				9CE3AB8F2487AD9700A23E5C /* PPBluetoothScanEntity.swift */,
+				9CE3AB902487AD9700A23E5C /* BluetoothPapa.swift */,
+			);
+			path = Bluepapa;
+			sourceTree = "<group>";
+		};
+		9CE3AB8C2487AD9700A23E5C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3AB8D2487AD9700A23E5C /* NORData.swift */,
+				9CE3AB8E2487AD9700A23E5C /* NORServiceIdentifiers.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9CE3AB952487B17A00A23E5C /* InitialLock */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3AB962487B17A00A23E5C /* ViewModel */,
+				9CE3ABA02487B17A00A23E5C /* SelectLockTypeController.swift */,
+				9CE3ABA12487B17A00A23E5C /* LockStartScanningController.swift */,
+				9CE3AB9E2487B17A00A23E5C /* InitialLock.storyboard */,
+			);
+			path = InitialLock;
+			sourceTree = "<group>";
+		};
+		9CE3AB962487B17A00A23E5C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3AB982487B17A00A23E5C /* LockStartScanViewModel.swift */,
+				9CE3AB992487B17A00A23E5C /* LockBindViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B1F349A258E9731393062461 /* Frameworks */ = {
@@ -417,6 +497,8 @@
 				9CB698D324868EBB005F7F7F /* DataPickerController.xib in Resources */,
 				9CB05011247E6D71001D6DA2 /* Main.storyboard in Resources */,
 				9CB698CB24863678005F7F7F /* HomeListCell.xib in Resources */,
+				9CE3ABA92487B17A00A23E5C /* InitialLock.storyboard in Resources */,
+				9CE3AB842487465400A23E5C /* ScanQRViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,8 +554,13 @@
 				9CB698BE2485F25F005F7F7F /* ChangePasswordController.swift in Sources */,
 				9C130DA7247F92DF00853084 /* MyController.swift in Sources */,
 				9C130D83247F6BB400853084 /* Swizzling+UIViewController.swift in Sources */,
+				9CE3AB802487346500A23E5C /* TaskDetailController.swift in Sources */,
 				9C130D9D247F716100853084 /* UIView+Extension.swift in Sources */,
+				9CE3ABA32487B17A00A23E5C /* LockStartScanViewModel.swift in Sources */,
+				9CE3AB8824874FED00A23E5C /* UIButton+Extension.swift in Sources */,
 				9C130D5A247F548800853084 /* RootViewController.swift in Sources */,
+				9CE3AB922487AD9700A23E5C /* NORServiceIdentifiers.swift in Sources */,
+				9CE3AB942487AD9700A23E5C /* BluetoothPapa.swift in Sources */,
 				9CB698D224868EBB005F7F7F /* DataPickerController.swift in Sources */,
 				9C130D75247F5E7000853084 /* NetworkDiskStorage.swift in Sources */,
 				9C130D8F247F6FDD00853084 /* RegistrationRecoveryService.swift in Sources */,
@@ -481,8 +568,11 @@
 				9C130D6B247F5C5F00853084 /* RxMoyaProvider.swift in Sources */,
 				9CB698C524863371005F7F7F /* ConfigureTaskListModel.swift in Sources */,
 				9C130DAB247F976600853084 /* CompositeAppDelegate.swift in Sources */,
+				9CE3ABAB2487B17A00A23E5C /* SelectLockTypeController.swift in Sources */,
 				9CB698C12485FB34005F7F7F /* NavigationSettingStyle.swift in Sources */,
+				9CE3AB832487465400A23E5C /* ScanQRViewController.swift in Sources */,
 				9C130D9B247F712900853084 /* PKHud+Rx.swift in Sources */,
+				9CE3AB8624874F0B00A23E5C /* TaskDetailViewModel.swift in Sources */,
 				9C130D99247F703A00853084 /* ObjectAssociation.swift in Sources */,
 				9C130D76247F5E7000853084 /* NetworkMetaDb.swift in Sources */,
 				9C130D86247F6FD600853084 /* CountdownButton.swift in Sources */,
@@ -494,16 +584,22 @@
 				9C130D6D247F5CCA00853084 /* AppErrorDomain.swift in Sources */,
 				9C130DB1247FA42100853084 /* Empty+UIViewController.swift in Sources */,
 				9C130D93247F6FE600853084 /* LoginViewController.swift in Sources */,
+				9CE3AB932487AD9700A23E5C /* PPBluetoothScanEntity.swift in Sources */,
+				9CE3AB8A2487529F00A23E5C /* String+Extension.swift in Sources */,
 				9C130D7C247F5FEF00853084 /* AccessTokenModel.swift in Sources */,
 				9C130D63247F592C00853084 /* ViewLoader.swift in Sources */,
 				9C130D95247F6FE600853084 /* RegisterForgetController.swift in Sources */,
+				9CE3ABAC2487B17A00A23E5C /* LockStartScanningController.swift in Sources */,
+				9CE3AB912487AD9700A23E5C /* NORData.swift in Sources */,
 				9C130DAF247FA24700853084 /* UIImage+Extension.swift in Sources */,
 				9CB698C22485FB34005F7F7F /* BaseNavigationController.swift in Sources */,
 				9C130D7E247F615D00853084 /* UserModel.swift in Sources */,
 				9C130D79247F5F1100853084 /* LCUser.swift in Sources */,
 				9CB0500A247E6D71001D6DA2 /* AppDelegate.swift in Sources */,
+				9CE3ABA42487B17A00A23E5C /* LockBindViewModel.swift in Sources */,
 				9C130D71247F5DF100853084 /* ColorClassification.swift in Sources */,
 				9C130D8E247F6FDD00853084 /* LoginService.swift in Sources */,
+				9CE3ABAE2487B34E00A23E5C /* LockModels.swift in Sources */,
 				9C130D67247F5A4D00853084 /* NetworkInterface.swift in Sources */,
 				9CB698CA24863678005F7F7F /* HomeListCell.swift in Sources */,
 				9C130DAD247F977900853084 /* AppearanceAppDelegate.swift in Sources */,

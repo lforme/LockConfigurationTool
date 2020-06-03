@@ -9,18 +9,15 @@
 import Foundation
 import ReactorKit
 import RxSwift
+import PKHUD
 import SwiftDate
 
 final class HomeViewReactor: Reactor {
     
     enum Action {
-        case addConfigTask
-        case pickTime(String, String)
-        case selectTask(String)
-        case deleteTask(String)
-        case configLock(String)
-        case pullToRefresh
-        case pullUpLoading(Int)
+        case pickTime(String?, String?)
+        case pullToRefresh(Int?)
+        case pullUpLoading(Int?)
     }
     
     struct State {
@@ -28,17 +25,14 @@ final class HomeViewReactor: Reactor {
         var requestFinished: Bool
         var noMoreData: Bool
         var dataList: [ConfigureTaskListModel]
-        var startTime: String
-        var endTime: String
-        var deleteResult: Bool?
-        var addResult: Void?
+        var startTime: String?
+        var endTime: String?
     }
     
     enum Mutation {
-        case setConfigTaskTap(Void)
-        case setTime(String, String)
+        case setTime(String?, String?)
         case setPageIndex(Int)
-        case setPageIndexToBegin
+        case setPageIndexToBegin(Int?)
         case setRequestFinished(Bool)
         case setNoMoreData(Bool)
         case setDataList([ConfigureTaskListModel])
@@ -47,73 +41,79 @@ final class HomeViewReactor: Reactor {
     var initialState: State
     
     init() {
-        let startTime = Date() - 1.months
         
-        self.initialState = State(pageIndex: 1, requestFinished: true, noMoreData: false, dataList: [], startTime: startTime.toFormat("yyyy-MM-dd HH:mm:ss"), endTime: Date().toFormat("yyyy-MM-dd HH:mm:ss"), deleteResult: nil, addResult: nil)
+        self.initialState = State(pageIndex: 0, requestFinished: true, noMoreData: false, dataList: [], startTime: nil, endTime: nil)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         
         switch action {
-        case .addConfigTask:
-            return .just(.setConfigTaskTap(()))
             
         case let .pickTime(start, end):
             
             let share = self.request(pageIndex: self.currentState.pageIndex, start: start, end: end)
-            let isNoMoreData = share.map { (list) -> Mutation in
-                if list.count == 0 {
-                    return .setNoMoreData(true)
-                } else {
-                    return .setNoMoreData(false)
-                }
-            }
-            
-            let isFinished = share.map { _ in Mutation.setRequestFinished(true) }
+                .distinctUntilChanged()
             
             let list = share.map { res in
                 Mutation.setDataList(res)
             }
+            return Observable.concat([.just(.setTime(start, end)), list])
             
-            return Observable.concat([.just(.setTime(start, end)),
-                                      isNoMoreData,
-                                      isFinished,
-                                      list
-            ])
+        case let .pullToRefresh(pageIndex):
             
-        case .pullToRefresh:
-            let share = self.request(pageIndex: self.currentState.pageIndex, start: self.currentState.startTime, end: self.currentState.endTime)
+            guard let index = pageIndex else {
+                return .just(.setDataList(currentState.dataList))
+            }
+            
+            let share = self.request(pageIndex: index, start: self.currentState.startTime, end: self.currentState.endTime)
+                .distinctUntilChanged()
             
             let list = share.map { res in
                 Mutation.setDataList(res)
             }
-            let isFinished = share.map { _ in Mutation.setRequestFinished(true) }
+            let isFinished = share.map { _ in
+                Mutation.setRequestFinished(true)
+            }
             
-            return Observable.concat([.just(.setPageIndexToBegin),
+            return Observable.concat([.just(.setPageIndexToBegin(index)),
                                       .just(.setNoMoreData(false)),
                                       isFinished,
                                       list
             ])
             
         case let .pullUpLoading(pageIndex):
-            let share = self.request(pageIndex: self.currentState.pageIndex + 1, start: self.currentState.startTime, end: self.currentState.endTime)
+            guard let index = pageIndex else {
+                return .just(.setDataList(currentState.dataList))
+            }
+            
+            let share = self.request(pageIndex: self.currentState.pageIndex, start: self.currentState.startTime, end: self.currentState.endTime)
+                .distinctUntilChanged()
             
             if self.currentState.noMoreData {
                 return .just(.setNoMoreData(true))
             }
             
-            let list = share.map { res in
-                Mutation.setDataList(res)
+            let list = share.map {[weak self] (items) -> Mutation in
+                guard var lastItems = self?.currentState.dataList else {
+                    return Mutation.setDataList(items)
+                }
+                lastItems += items
+                
+                return Mutation.setDataList(Array(Set(lastItems)))
             }
             
             let isFinished = share.map { _ in Mutation.setRequestFinished(true) }
             
-            return Observable.concat([.just(Mutation.setPageIndex(pageIndex)),
-                                      isFinished,
-                                      list])
+            let noMore = share.map  {
+                Mutation.setNoMoreData($0.count == 0)
+            }
             
-        default:
-            return .just(.setPageIndex(1))
+            return Observable.concat([
+                .just(.setPageIndex(index)),
+                isFinished,
+                noMore,
+                list
+            ])
         }
     }
     
@@ -129,31 +129,43 @@ final class HomeViewReactor: Reactor {
         case let .setPageIndex(index):
             state.pageIndex += index
             
-        case .setPageIndexToBegin:
-            state.pageIndex = 1
+        case let .setPageIndexToBegin(index):
+            if let i = index {
+                state.pageIndex = i
+            }
             
         case let .setRequestFinished(finished):
             state.requestFinished = finished
             
         case let .setNoMoreData(noMore):
-            state.requestFinished = noMore
+            state.noMoreData = noMore
             
         case let .setDataList(list):
             state.dataList = list
-            
-        case let .setConfigTaskTap(tap):
-            state.addResult = tap
         }
-        
         return state
     }
 }
 
 extension HomeViewReactor {
     
-    fileprivate func request(pageIndex: Int, start: String, end: String) -> Observable<[ConfigureTaskListModel]> {
+    func deleteTask(id: Observable<String?>) -> Observable<Bool> {
+        return id.flatMapLatest { (o) -> Observable<Bool> in
+            guard let o = o else {
+                return .empty()
+            }
+            return BusinessAPI.requestMapBool(.deleteTask(id: o))
+        }
+    }
+    
+    fileprivate func request(pageIndex: Int, start: String?, end: String?) -> Observable<[ConfigureTaskListModel]> {
         
-        return BusinessAPI.requestMapJSONArray(.hardwareLockList(pageSize: 15, pageIndex: pageIndex, startTime: start, endTime: end), classType: ConfigureTaskListModel.self, useCache: true, isPaginating: true).map { $0.compactMap { $0 } }.share(replay: 1, scope: .forever)
+        return BusinessAPI.requestMapJSONArray(.hardwareLockList(pageSize: 15, pageIndex: pageIndex, startTime: start, endTime: end), classType: ConfigureTaskListModel.self, useCache: true, isPaginating: true)
+            .map { $0.compactMap { $0 } }
+            .share(replay: 1, scope: .forever)
+            .do(onError: { (error) in
+                PKHUD.sharedHUD.rx.showError(error)
+            })
     }
     
 }

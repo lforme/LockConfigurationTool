@@ -33,5 +33,13 @@ enum BusinessInterface {
     // 编辑用户
     case editUser(parameter: HandyJSON)
     // 配置列表
-    case hardwareLockList(pageSize: Int, pageIndex: Int, startTime: String, endTime: String)
+    case hardwareLockList(pageSize: Int, pageIndex: Int, startTime: String?, endTime: String?)
+    // 添加配置任务
+    case hardwareLockConfigStorage(channels: String, snCode: String, phone: String, installAddress: String?)
+    // 删除配置任务
+    case deleteTask(id: String)
+    // 编辑配置任务
+    case hardwareLockConfigEdit(id: String, channels: String, snCode: String, phone: String, installAddress: String?)
+    // 绑定门锁
+    case bind(lock: LockModel)
 }

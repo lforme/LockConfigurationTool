@@ -165,10 +165,11 @@ extension BaseNavigationController {
             
             let button = UIButton(type: .custom)
             let image = UIImage(named: "back_arrow")
+            button.bounds.size = CGSize(width: 60, height: 32)
+            button.contentHorizontalAlignment = .leading
             button.setImage(image, for: UIControl.State())
-            button.sizeToFit()
-            button.contentHorizontalAlignment = .center
             vc.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+            button.addTarget(self, action: #selector(pop), for: .touchUpInside)
             
             guard let style = vc as? NavigationSettingStyle, let naviBkColor = style.backgroundColor else {
                 return
@@ -177,6 +178,10 @@ extension BaseNavigationController {
             vc.navigationItem.leftBarButtonItem?.tintColor = color
             
         }
+    }
+    
+    @objc func pop() {
+        self.popViewController(animated: true)
     }
 }
 

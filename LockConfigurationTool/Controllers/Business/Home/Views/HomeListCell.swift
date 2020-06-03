@@ -8,8 +8,9 @@
 
 import UIKit
 import Reusable
-
-class HomeListCell: UITableViewCell, Reusable {
+import RxCocoa
+import RxSwift
+class HomeListCell: UITableViewCell, NibReusable {
 
     @IBOutlet weak var snNumber: UILabel!
     @IBOutlet weak var configStatus: UILabel!
@@ -20,11 +21,17 @@ class HomeListCell: UITableViewCell, Reusable {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var configButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var bgView: UIView!
     
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        disposeBag = DisposeBag()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        bgView.setCircularShadow(radius: 7, color: ColorClassification.textPlaceholder.value)
     }
 
 }

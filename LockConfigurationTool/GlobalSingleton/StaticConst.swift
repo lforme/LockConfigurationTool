@@ -12,7 +12,7 @@ import UIKit
 let kLSRem = UIScreen.main.bounds.width / 375
 
 enum NotificationRefreshType {
-    case none
+    case configTask
     
 }
 

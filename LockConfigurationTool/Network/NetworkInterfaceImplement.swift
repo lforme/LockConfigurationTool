@@ -127,6 +127,9 @@ extension BusinessInterface: TargetType {
             return .put
         case .user:
             return .get
+        case .hardwareLockConfigEdit:
+            return .put
+            
         default:
             return .post
         }
@@ -140,6 +143,14 @@ extension BusinessInterface: TargetType {
             return "/user"
         case .hardwareLockList:
             return "/hardware_lock_config/page"
+        case .hardwareLockConfigStorage:
+             return "/hardware_lock_config/storage"
+        case let .deleteTask(id):
+            return "/hardware_lock_config/delete/\(id)"
+        case let .hardwareLockConfigEdit(id, _, _, _, _):
+            return "/hardware_lock_config/update/\(id)"
+        case .bind:
+            return "/hardware_lock/configuration"
         }
     }
     
@@ -149,7 +160,34 @@ extension BusinessInterface: TargetType {
             return parameter.toJSON()
             
         case let .hardwareLockList(pageSize, pageIndex, startTime, endTime):
-            return ["currentPage": pageIndex, "pageSize": pageSize, "startTime": startTime, "endTime": endTime]
+            var dict: [String: Any] = ["currentPage": pageIndex, "pageSize": pageSize]
+            
+            if let s = startTime {
+                
+                dict.updateValue(s, forKey: "startTime")
+            }
+            if let e = endTime {
+                dict.updateValue(e, forKey: "endTime")
+            }
+            return dict
+            
+        case let .hardwareLockConfigStorage(channels, snCode, phone, installAddress):
+            var dict = ["channels": channels, "phoneNo": phone, "snCode": snCode]
+            if let address = installAddress {
+                dict.updateValue(address, forKey: "installAddress")
+            }
+            return dict
+           
+        case let .hardwareLockConfigEdit(_, channels, snCode, phone, installAddress):
+            
+            var dict = ["channels": channels, "phoneNo": phone, "snCode": snCode]
+            if let address = installAddress {
+                dict.updateValue(address, forKey: "installAddress")
+            }
+            return dict
+            
+        case let .bind(lock):
+            return lock.toJSON()
             
         default:
             return nil

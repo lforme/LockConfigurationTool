@@ -20,6 +20,7 @@ class LCUser {
     private let changeableToken = BehaviorRelay<AccessTokenModel?>(value: nil)
     private let disposeBag = DisposeBag()
     
+    let diskStorage = NetworkDiskStorage(autoCleanTrash: false, path: "network")
     
     private init() {
         lock.name = "com.LSLUser.lock"
@@ -80,8 +81,7 @@ class LCUser {
         }
         
         if let accountID = user?.id {
-            let diskCache = NetworkDiskStorage(autoCleanTrash: true, path: "network")
-            let deleteDb = diskCache.deleteValueBy(accountID)
+            let deleteDb = diskStorage.deleteValueBy(accountID)
             print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
         }
         

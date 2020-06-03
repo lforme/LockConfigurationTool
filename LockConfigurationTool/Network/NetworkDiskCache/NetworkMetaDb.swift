@@ -21,7 +21,7 @@ final class NetworkMetaDb {
     let value = Expression<Data>("value")
     let accessTime = Expression<Date>("accessTime")
     let expirationTime = Expression<Date>("expirationTime")
-    let accountId = Expression<String?>("accountId")
+    let userId = Expression<String?>("userId")
     
     private var lock = pthread_rwlock_t()
     private let queue = DispatchQueue(label: "com.networkMetaDb.rw", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem)
@@ -57,7 +57,7 @@ final class NetworkMetaDb {
             t.column(value)
             t.column(accessTime)
             t.column(expirationTime)
-            t.column(accountId)
+            t.column(userId)
         })
     }
     
@@ -87,7 +87,7 @@ extension NetworkMetaDb {
                         this.key <- key,
                         this.value <- value,
                         this.accessTime <- Date(),
-                        this.accountId <- LCUser.current().user?.id
+                        this.userId <- LCUser.current().user?.id
                     )) > 0 {
                         result = true
                         print("写入成功: \(result)")
@@ -97,7 +97,7 @@ extension NetworkMetaDb {
                             this.value <- value,
                             this.accessTime <- Date(),
                             this.expirationTime <- Date() + 7.days,
-                            this.accountId <- LCUser.current().user?.id
+                            this.userId <- LCUser.current().user?.id
                         ))
                         
                         result = (rowid > Int64(0)) ? true : false
@@ -122,7 +122,7 @@ extension NetworkMetaDb {
         queue.sync(flags: .barrier) {
             let query = self.table.select(self.table[*])
                 .filter(self.key == key)
-                .filter(self.accountId == LCUser.current().user?.id)
+                .filter(self.userId == LCUser.current().user?.id)
                 .limit(1)
             
             do {
@@ -165,7 +165,7 @@ extension NetworkMetaDb {
         }
         var result = -1
         queue.async {[unowned self] in
-            let value = self.table.filter(self.accountId == userId)
+            let value = self.table.filter(self.userId == userId)
             do {
                 result = try self.checkDb().run(value.delete())
                 

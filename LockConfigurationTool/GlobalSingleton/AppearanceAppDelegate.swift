@@ -10,6 +10,7 @@ import Foundation
 import IQKeyboardManager
 import PKHUD
 import ChameleonFramework
+import SwiftDate
 
 final class AppearanceAppDelegate: AppDelegateType {
     
@@ -19,6 +20,7 @@ final class AppearanceAppDelegate: AppDelegateType {
         setupKeyborad()
         setupHUD()
         setupNavigationStyle()
+        setupDateTime()
         
         return true
     }
@@ -32,6 +34,10 @@ final class AppearanceAppDelegate: AppDelegateType {
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
         IQKeyboardManager.shared().shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared().isEnableAutoToolbar = false
+    }
+    
+    private func setupDateTime() {
+        SwiftDate.defaultRegion = Region.current
     }
     
     private func setupHUD() {
