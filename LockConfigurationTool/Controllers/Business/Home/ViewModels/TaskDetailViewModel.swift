@@ -18,6 +18,14 @@ final class TaskDetailViewModel {
     let phone = BehaviorRelay<String?>(value: nil)
     let address = BehaviorRelay<String?>(value: nil)
     
+    var snCodeCount: Observable<String> {
+        return snCode.map { (count) -> String in
+            guard let c = count else {
+                return "0"
+            }
+            return String(c.count)
+        }
+    }
     var saveAction: Action<(), Bool>!
     
     let type: TaskDetailController.EditType
@@ -26,6 +34,10 @@ final class TaskDetailViewModel {
     init(type: TaskDetailController.EditType, model: ConfigureTaskListModel?) {
         self.model = model
         self.type = type
+        
+        self.snCode.accept(model?.snCode)
+        self.phone.accept(model?.phoneNo)
+        self.address.accept(model?.installAddress)
         
         let enable = Observable.combineLatest(snCode, phone).map { $0.0.isNotNilNotEmpty && $0.1.isNotNilNotEmpty && $0.1?.count == 11 }
         

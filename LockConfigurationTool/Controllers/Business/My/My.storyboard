@@ -40,8 +40,37 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="background"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="tA3-gM-fAX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Fvz-8L-C4u">
                                         <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fvz-8L-C4u" id="5lg-2j-rMf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpj-ek-b4P">
+                                                    <rect key="frame" x="16" y="13.5" width="29" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" name="textOpaque78"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFT-Tg-xlX">
+                                                    <rect key="frame" x="394" y="22" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" name="textPrimary"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="JFT-Tg-xlX" secondAttribute="trailing" constant="20" id="KEQ-oH-UBq"/>
+                                                <constraint firstItem="Dpj-ek-b4P" firstAttribute="leading" secondItem="5lg-2j-rMf" secondAttribute="leading" constant="16" id="Vc5-NP-EkR"/>
+                                                <constraint firstItem="JFT-Tg-xlX" firstAttribute="centerY" secondItem="5lg-2j-rMf" secondAttribute="centerY" id="VdV-mX-muQ"/>
+                                                <constraint firstItem="Dpj-ek-b4P" firstAttribute="centerY" secondItem="5lg-2j-rMf" secondAttribute="centerY" id="gFe-Fi-uaZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="background"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="tA3-gM-fAX">
+                                        <rect key="frame" x="0.0" y="115" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tA3-gM-fAX" id="T6f-gF-ShV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -70,7 +99,7 @@
                                         <color key="backgroundColor" name="background"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="400" id="f5G-Uh-tso">
-                                        <rect key="frame" x="0.0" y="115" width="414" height="400"/>
+                                        <rect key="frame" x="0.0" y="158.5" width="414" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f5G-Uh-tso" id="CyT-0K-DeP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
@@ -117,6 +146,7 @@
                     <connections>
                         <outlet property="logoutButton" destination="b5s-Ps-WVk" id="Hd4-A2-W4P"/>
                         <outlet property="logoutCell" destination="f5G-Uh-tso" id="dO8-HD-Hvm"/>
+                        <outlet property="phoneLabel" destination="JFT-Tg-xlX" id="02H-pX-ppg"/>
                         <outlet property="versionLabel" destination="N9C-QU-7bm" id="hxk-1P-1IO"/>
                     </connections>
                 </tableViewController>

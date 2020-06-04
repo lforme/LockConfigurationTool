@@ -25,6 +25,7 @@ class MyController: UITableViewController, NavigationSettingStyle {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var logoutCell: UITableViewCell!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var phoneLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,13 @@ class MyController: UITableViewController, NavigationSettingStyle {
     
     func bind() {
         versionLabel.text = ServerHost.shared.environment.description
+        
+        if var phone = LCUser.current().user?.phone {
+            let start = phone.index(phone.startIndex, offsetBy: 3)
+            let end = phone.index(phone.startIndex, offsetBy: 3 + 4)
+            phone.replaceSubrange(start..<end, with: "****")
+            phoneLabel.text = phone
+        }
         
         let logoutAction = Action<Void?, Bool> { (tap) -> Observable<Bool> in
             

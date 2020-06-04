@@ -29,6 +29,7 @@ class TaskDetailController: UITableViewController, NavigationSettingStyle {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var bindLockButton: UIButton!
+    @IBOutlet weak var totalCount: UILabel!
     
     var vm: TaskDetailViewModel!
     var type: EditType!
@@ -69,14 +70,18 @@ class TaskDetailController: UITableViewController, NavigationSettingStyle {
             addressTextField.text = model.installAddress
         }
         
+        vm.snCodeCount
+            .bind(to: totalCount.rx.text)
+            .disposed(by: rx.disposeBag)
+        
         scanButton.rx.tap.flatMapLatest {
             ScanQRViewController.rx.present()
         }
         .do(afterNext: {[weak self] (text) in
             self?.vm.snCode.accept(text)
         })
-        .bind(to: snTextField.rx.text)
-        .disposed(by: rx.disposeBag)
+            .bind(to: snTextField.rx.text)
+            .disposed(by: rx.disposeBag)
         
         snTextField.rx.text
             .orEmpty
