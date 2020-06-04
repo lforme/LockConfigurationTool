@@ -63,7 +63,8 @@ class LCUser {
     var observedIsLogin: Observable<Bool> {
         let hasUserInfo = changeableUserInfo.map { $0 != nil }
         let hasToken = changeableToken.map { $0 != nil }
-        return Observable.merge(hasToken, hasUserInfo)
+        
+        return Observable.combineLatest(hasToken, hasUserInfo).map { $0 && $1 }
     }
     
     var observedUser: Observable<UserModel?> {

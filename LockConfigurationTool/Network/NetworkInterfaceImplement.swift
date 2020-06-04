@@ -123,13 +123,10 @@ extension BusinessInterface: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .editUser:
-            return .put
         case .user:
             return .get
         case .hardwareLockConfigEdit:
             return .put
-            
         default:
             return .post
         }
@@ -137,8 +134,8 @@ extension BusinessInterface: TargetType {
     
     var path: String {
         switch self {
-        case .editUser:
-            return "/user"
+        case .changePassword:
+            return "/user/password"
         case .user:
             return "/user"
         case .hardwareLockList:
@@ -156,8 +153,8 @@ extension BusinessInterface: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case let .editUser(parameter):
-            return parameter.toJSON()
+        case let .changePassword(oldPwd, newPwd):
+            return ["oldPassword": oldPwd, "password": newPwd]
             
         case let .hardwareLockList(pageSize, pageIndex, startTime, endTime):
             var dict: [String: Any] = ["currentPage": pageIndex, "pageSize": pageSize]

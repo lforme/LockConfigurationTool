@@ -148,7 +148,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signin_passwords" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-6B-Lnz">
                                                             <rect key="frame" x="16" y="19.5" width="12" height="17"/>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gny-05-2jT">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入旧密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gny-05-2jT">
                                                             <rect key="frame" x="36" y="0.0" width="290" height="56"/>
                                                             <color key="textColor" red="0.023529411760000001" green="0.10980392160000001" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -191,7 +191,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signin_passwords" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-jW-MKc">
                                                             <rect key="frame" x="16" y="19.5" width="12" height="17"/>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w9i-0s-k7V">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w9i-0s-k7V">
                                                             <rect key="frame" x="36" y="0.0" width="290" height="56"/>
                                                             <color key="textColor" red="0.023529411760000001" green="0.10980392160000001" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -228,6 +228,12 @@
                                                         <constraint firstItem="O0j-nt-uuu" firstAttribute="leading" secondItem="w9i-0s-k7V" secondAttribute="trailing" constant="8" id="nAv-k3-CgS"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果忘记旧密码, 请退出登录点击【忘记密码】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-xA-awi">
+                                                    <rect key="frame" x="16" y="156" width="252.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" name="textDescription"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Xbx-3i-zmB" firstAttribute="top" secondItem="hAy-Kx-AAg" secondAttribute="top" constant="20" id="1uQ-It-6OT"/>
@@ -237,6 +243,8 @@
                                                 <constraint firstItem="PRz-Uj-0uu" firstAttribute="leading" secondItem="hAy-Kx-AAg" secondAttribute="leading" constant="16" id="F2u-jG-gnM"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xbx-3i-zmB" secondAttribute="trailing" constant="16" id="OyL-za-qu4"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xbx-3i-zmB" secondAttribute="trailing" constant="16" id="QAF-HZ-Edb"/>
+                                                <constraint firstItem="6cM-xA-awi" firstAttribute="leading" secondItem="PRz-Uj-0uu" secondAttribute="leading" id="nAY-nM-tjF"/>
+                                                <constraint firstItem="6cM-xA-awi" firstAttribute="top" secondItem="PRz-Uj-0uu" secondAttribute="bottom" constant="16" id="qC7-Oe-fka"/>
                                                 <constraint firstAttribute="trailing" secondItem="PRz-Uj-0uu" secondAttribute="trailing" constant="16" id="sb9-Q2-2WM"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -308,6 +316,9 @@
         </namedColor>
         <namedColor name="pureblue">
             <color red="0.32499998807907104" green="0.58399999141693115" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textDescription">
+            <color red="0.65100002288818359" green="0.68199998140335083" blue="0.7369999885559082" alpha="0.81999999284744263" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textOpaque78">
             <color red="0.039000000804662704" green="0.12200000137090683" blue="0.2669999897480011" alpha="0.77999997138977051" colorSpace="custom" customColorSpace="sRGB"/>

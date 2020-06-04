@@ -13,7 +13,11 @@ import RxSwift
 import Action
 import PKHUD
 
-class ChangePasswordController: UITableViewController {
+class ChangePasswordController: UITableViewController, NavigationSettingStyle {
+    
+    var backgroundColor: UIColor? {
+        return ColorClassification.tableViewBackground.value
+    }
     
     @IBOutlet fileprivate weak var containerA: UIView!
     @IBOutlet fileprivate weak var containerB: UIView!
@@ -61,8 +65,8 @@ class ChangePasswordController: UITableViewController {
 
 extension Reactive where Base: ChangePasswordController {
     
-    static func present(from: UIViewController) -> Observable<String> {
-        return Observable<String>.create { (observer) -> Disposable in
+    static func present(from: UIViewController) -> Observable<(String, String)> {
+        return Observable<(String, String)>.create { (observer) -> Disposable in
             var changePwdVC: ChangePasswordController = ViewLoader.Storyboard.controller(from: "My")
             
             changePwdVC = changePwdVC.then { (vc) in
@@ -73,8 +77,8 @@ extension Reactive where Base: ChangePasswordController {
                         return .empty()
                     }
                     
-                    if textA == textB && !textA.isEmpty && !textB.isEmpty {
-                        observer.onNext(textA)
+                    if !textA.isEmpty && !textB.isEmpty {
+                        observer.onNext((textA, textB))
                         observer.onCompleted()
                         return .empty()
                     } else {

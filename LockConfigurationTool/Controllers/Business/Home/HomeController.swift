@@ -211,12 +211,30 @@ class HomeController: UIViewController, StoryboardView, NavigationSettingStyle {
                 })
                 .disposed(by: cell.disposeBag)
             
-            cell.configButton.rx.tap.subscribe(onNext: {[weak self] (_) in
-               
-                let bindLockVC: SelectLockTypeController = ViewLoader.Storyboard.controller(from: "InitialLock")
-                bindLockVC.configModel = item
-                self?.navigationController?.pushViewController(bindLockVC, animated: true)
-            }).disposed(by: cell.disposeBag)
+            cell.configButton.rx
+                .tap
+                .subscribe(onNext: {[weak self] (_) in
+                    
+                    let bindLockVC: SelectLockTypeController = ViewLoader.Storyboard.controller(from: "InitialLock")
+                    bindLockVC.configModel = item
+                    self?.navigationController?.pushViewController(bindLockVC, animated: true)
+                }).disposed(by: cell.disposeBag)
+            
+            cell.phoneButton.rx
+                .tap
+                .subscribe(onNext: { (_) in
+                    guard let phone = item.phoneNo else {
+                        return
+                    }
+                    if let url = URL(string: "tel://\(phone)"), UIApplication.shared.canOpenURL(url) {
+                        if #available(iOS 10, *) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                    
+                }).disposed(by: cell.disposeBag)
             
             return cell
         })

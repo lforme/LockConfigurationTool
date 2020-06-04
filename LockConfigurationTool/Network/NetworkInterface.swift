@@ -30,8 +30,8 @@ enum AuthenticationInterface {
 enum BusinessInterface {
     // 获取当前用户信息
     case user
-    // 编辑用户
-    case editUser(parameter: HandyJSON)
+    // 修改用户密码
+    case changePassword(oldPwd: String, newPwd: String)
     // 配置列表
     case hardwareLockList(pageSize: Int, pageIndex: Int, startTime: String?, endTime: String?)
     // 添加配置任务

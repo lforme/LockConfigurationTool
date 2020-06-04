@@ -63,7 +63,7 @@
                                         <color key="textColor" name="textPrimary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-ao-xZy">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-ao-xZy">
                                         <rect key="frame" x="267" y="28" width="60" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="6f8-S2-h5y"/>

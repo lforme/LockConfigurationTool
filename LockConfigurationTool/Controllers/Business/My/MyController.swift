@@ -12,7 +12,11 @@ import Action
 import PKHUD
 import RxSwift
 
-class MyController: UITableViewController {
+class MyController: UITableViewController, NavigationSettingStyle {
+    
+    var backgroundColor: UIColor? {
+        return ColorClassification.tableViewBackground.value
+    }
     
     enum ActionType: Int {
         case changePassword = 0
@@ -79,13 +83,10 @@ class MyController: UITableViewController {
             
         case .changePassword:
             ChangePasswordController.rx.present(from: self)
-                .flatMapLatest { (newPassword) -> Observable<Bool> in
-                    
-                    guard var oldUser = LCUser.current().user else {
-                        return .error(AppError.reason("发生未知错误, user is nil."))
-                    }
-                    oldUser.loginPassword = newPassword
-                    return BusinessAPI.requestMapBool(.editUser(parameter: oldUser))
+                .flatMapLatest { (arg) -> Observable<Bool> in
+                    let oldPwd = arg.0
+                    let newPwd = arg.1
+                    return BusinessAPI.requestMapBool(.changePassword(oldPwd: oldPwd, newPwd: newPwd))
             }
             .subscribe(onNext: { (success) in
                 if success {
