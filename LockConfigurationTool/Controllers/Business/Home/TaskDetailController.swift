@@ -55,6 +55,7 @@ class TaskDetailController: UITableViewController, NavigationSettingStyle {
             snTextField.isEnabled = false
             phoneTextField.isEnabled = false
             addressTextField.isEnabled = false
+            scanButton.isEnabled = false
         }
     }
     

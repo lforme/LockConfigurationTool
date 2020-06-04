@@ -22,6 +22,7 @@ class HomeListCell: UITableViewCell, NibReusable {
     @IBOutlet weak var configButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var editButton: UIButton!
     
     private(set) var disposeBag = DisposeBag()
     

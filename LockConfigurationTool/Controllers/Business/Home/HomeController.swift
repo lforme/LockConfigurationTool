@@ -180,10 +180,12 @@ class HomeController: UIViewController, StoryboardView, NavigationSettingStyle {
                 cell.statusIcon.isHidden = false
                 cell.configButton.isHidden = false
                 cell.deleteButton.isHidden = false
+                cell.editButton.isHidden = false
             } else {
                 cell.statusIcon.isHidden = true
                 cell.configButton.isHidden = true
                 cell.deleteButton.isHidden = true
+                cell.editButton.isHidden = true
             }
             
             let deleteTap = cell.deleteButton.rx.tap

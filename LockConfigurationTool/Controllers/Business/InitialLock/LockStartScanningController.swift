@@ -85,6 +85,7 @@ class LockStartScanningController: UIViewController, NavigationSettingStyle {
                 if success {
                     HUD.flash(.label("绑定成功"), delay: 2)
                     NotificationCenter.default.post(name: .refreshState, object: NotificationRefreshType.configTask)
+                    self?.navigationController?.popToRootViewController(animated: true)
                 } else {
                     HUD.flash(.label("绑定失败"), delay: 2)
                     BluetoothPapa.shareInstance.factoryReset { (_) in

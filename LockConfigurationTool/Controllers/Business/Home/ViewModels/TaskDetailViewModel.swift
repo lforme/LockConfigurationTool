@@ -30,17 +30,20 @@ final class TaskDetailViewModel {
         let enable = Observable.combineLatest(snCode, phone).map { $0.0.isNotNilNotEmpty && $0.1.isNotNilNotEmpty && $0.1?.count == 11 }
         
         self.saveAction = Action.init(enabledIf: enable, workFactory: {[unowned self] (_) -> Observable<Bool> in
+            if self.snCode.value!.count < 4 {
+                return .error(AppError.reason("发生未知错误, 二维码位数少用4位"))
+            }
             
             switch self.type {
             case .addNew:
-            return BusinessAPI.requestMapBool(.hardwareLockConfigStorage(channels: "KF系列锁", snCode: self.snCode.value!, phone: self.phone.value!, installAddress: self.address.value))
+                return BusinessAPI.requestMapBool(.hardwareLockConfigStorage(channels: self.snCode.value![2..<4], snCode: self.snCode.value!, phone: self.phone.value!, installAddress: self.address.value))
                 
             case .modify:
                 guard let id = model?.id else {
                     return .error(AppError.reason("发生未知错误, 无法获取Id."))
                 }
                 
-                return BusinessAPI.requestMapBool(.hardwareLockConfigEdit(id: id, channels: "KF系列锁", snCode: self.snCode.value!, phone: self.phone.value!, installAddress: self.address.value))
+                return BusinessAPI.requestMapBool(.hardwareLockConfigEdit(id: id, channels: self.snCode.value![2..<4], snCode: self.snCode.value!, phone: self.phone.value!, installAddress: self.address.value))
             }
         })
     }

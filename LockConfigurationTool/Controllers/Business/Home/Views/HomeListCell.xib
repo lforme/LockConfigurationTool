@@ -192,6 +192,7 @@
                 <outlet property="configStatus" destination="Sak-nS-wdW" id="pGu-e2-HxM"/>
                 <outlet property="date" destination="vpi-7u-jyw" id="Fmg-6l-id4"/>
                 <outlet property="deleteButton" destination="OIx-Vp-Wb8" id="xK0-50-G1u"/>
+                <outlet property="editButton" destination="ahJ-ao-xZy" id="Y5X-Vf-7XC"/>
                 <outlet property="phone" destination="Fog-hn-5Py" id="yLl-Y7-aql"/>
                 <outlet property="phoneButton" destination="f5M-4K-qsg" id="NuB-eL-AnT"/>
                 <outlet property="snNumber" destination="enm-P1-q6I" id="Iy8-pb-RWs"/>
