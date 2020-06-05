@@ -46,6 +46,7 @@
 		9C130DAD247F977900853084 /* AppearanceAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C130DAC247F977900853084 /* AppearanceAppDelegate.swift */; };
 		9C130DAF247FA24700853084 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C130DAE247FA24700853084 /* UIImage+Extension.swift */; };
 		9C130DB1247FA42100853084 /* Empty+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C130DB0247FA42100853084 /* Empty+UIViewController.swift */; };
+		9CAA70E4248A889800A252E4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA70E3248A889700A252E4 /* UIImageView+Extension.swift */; };
 		9CB0500A247E6D71001D6DA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB05009247E6D71001D6DA2 /* AppDelegate.swift */; };
 		9CB05011247E6D71001D6DA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB0500F247E6D71001D6DA2 /* Main.storyboard */; };
 		9CB05013247E6D73001D6DA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB05012247E6D73001D6DA2 /* Assets.xcassets */; };
@@ -120,7 +121,8 @@
 		9C130DAC247F977900853084 /* AppearanceAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceAppDelegate.swift; sourceTree = "<group>"; };
 		9C130DAE247FA24700853084 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		9C130DB0247FA42100853084 /* Empty+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Empty+UIViewController.swift"; sourceTree = "<group>"; };
-		9CB05006247E6D71001D6DA2 /* 门锁安装助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "门锁安装助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CAA70E3248A889700A252E4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		9CB05006247E6D71001D6DA2 /* 门锁运维助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "门锁运维助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB05009247E6D71001D6DA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CB05010247E6D71001D6DA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CB05012247E6D73001D6DA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				9C130DB0247FA42100853084 /* Empty+UIViewController.swift */,
 				9CE3AB8724874FED00A23E5C /* UIButton+Extension.swift */,
 				9CE3AB892487529F00A23E5C /* String+Extension.swift */,
+				9CAA70E3248A889700A252E4 /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -338,7 +341,7 @@
 		9CB05007247E6D71001D6DA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9CB05006247E6D71001D6DA2 /* 门锁安装助手.app */,
+				9CB05006247E6D71001D6DA2 /* 门锁运维助手.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,7 +451,7 @@
 			);
 			name = LockConfigurationTool;
 			productName = LockConfigurationTool;
-			productReference = 9CB05006247E6D71001D6DA2 /* 门锁安装助手.app */;
+			productReference = 9CB05006247E6D71001D6DA2 /* 门锁运维助手.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -582,6 +585,7 @@
 				9C130D9F247F75BC00853084 /* StaticConst.swift in Sources */,
 				9C130D65247F59C500853084 /* NetworkingEnvironment.swift in Sources */,
 				9C130D6D247F5CCA00853084 /* AppErrorDomain.swift in Sources */,
+				9CAA70E4248A889800A252E4 /* UIImageView+Extension.swift in Sources */,
 				9C130DB1247FA42100853084 /* Empty+UIViewController.swift in Sources */,
 				9C130D93247F6FE600853084 /* LoginViewController.swift in Sources */,
 				9CE3AB932487AD9700A23E5C /* PPBluetoothScanEntity.swift in Sources */,
@@ -762,7 +766,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldwhy.LockConfigurationTool;
-				PRODUCT_NAME = "门锁安装助手";
+				PRODUCT_NAME = "门锁运维助手";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -782,7 +786,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oldwhy.LockConfigurationTool;
-				PRODUCT_NAME = "门锁安装助手";
+				PRODUCT_NAME = "门锁运维助手";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

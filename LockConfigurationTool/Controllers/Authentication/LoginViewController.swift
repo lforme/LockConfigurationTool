@@ -191,13 +191,11 @@ extension LoginViewController {
                 switch index {
                 case 0:
                     ServerHost.shared.environment = .dev
-                    LCUser.current().logout()
                     HUD.flash(.label("已经切换到开发环境\nAPP即将关闭"), delay: 3, completion: { (_) in
                         exit(1)
                     })
                 case 1:
                     ServerHost.shared.environment = .production
-                    LCUser.current().logout()
                     HUD.flash(.label("已经切换到线上环境\nAPP即将关闭"), delay: 3, completion: { (_) in
                         exit(1)
                     })

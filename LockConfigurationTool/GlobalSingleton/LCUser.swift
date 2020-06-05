@@ -81,10 +81,8 @@ class LCUser {
             AuthAPI.requestMapBool(.logout(token: t)).subscribe().disposed(by: disposeBag)
         }
         
-        if let accountID = user?.id {
-            let deleteDb = diskStorage.deleteValueBy(accountID)
-            print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
-        }
+        let deleteDb = diskStorage.deleteAll()
+        print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
         
         Keys.allCases.forEach {
             print("已删除Key:\($0.rawValue)")

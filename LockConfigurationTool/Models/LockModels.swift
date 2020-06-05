@@ -38,3 +38,9 @@ class LockModel: HandyJSON {
     var serialNumber: String?
     var voice: String = "2"
 }
+
+struct LockTypeModel: HandyJSON {
+    var tyeUrl: String?
+    var typeId: String?
+    var typeName: String?
+}

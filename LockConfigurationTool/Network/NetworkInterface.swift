@@ -42,4 +42,6 @@ enum BusinessInterface {
     case hardwareLockConfigEdit(id: String, channels: String, snCode: String, phone: String, installAddress: String?)
     // 绑定门锁
     case bind(lock: LockModel)
+    // 获取选择门锁列表
+    case lockTypeList
 }

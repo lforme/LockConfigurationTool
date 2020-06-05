@@ -82,7 +82,7 @@ extension Reactive where Base: ChangePasswordController {
                         observer.onCompleted()
                         return .empty()
                     } else {
-                        HUD.flash(.label("请检查两次输入是否一致"), delay: 2)
+                        HUD.flash(.label("请检查输入内容是否完整"), delay: 2)
                         return .empty()
                     }
                 }

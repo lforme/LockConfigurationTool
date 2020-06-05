@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>门锁安装助手需要使用蓝牙来配置门锁</string>
+	<string>门锁运维助手需要使用蓝牙来配置门锁</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>门锁安装助手需要使用蓝牙来配置门锁</string>
+	<string>门锁运维助手需要使用蓝牙来配置门锁</string>
 	<key>NSCameraUsageDescription</key>
-	<string>门锁安装助手需要使用相机, 扫描二维码</string>
+	<string>门锁运维助手需要使用相机, 扫描二维码</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>门锁安装助手需要使用相册资源, 识别二维码</string>
+	<string>门锁运维助手需要使用相册资源, 识别二维码</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

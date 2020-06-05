@@ -9,24 +9,29 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
+import MJRefresh
 
-extension UIViewController: DZNEmptyDataSetSource {
+extension UIViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        let tableView = self.view.subviews.filter { $0 is UITableView  }.first as? UITableView
+        tableView?.mj_header?.beginRefreshing()
+    }
     
     public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return UIImage(named: "global_empty")
     }
     
     public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "空空如也\n等等在看看吧~"
+        let text = "O(∩_∩)O哈哈~什么都没有\n点击刷新"
         let paragraphStyle = NSMutableParagraphStyle()
-              paragraphStyle.lineSpacing = 8
+        paragraphStyle.lineSpacing = 8
         paragraphStyle.alignment = .center
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): ColorClassification.textDescription.value,
                                                          NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
                                                          NSAttributedString.Key.paragraphStyle: paragraphStyle]
         
         let attributeString = NSAttributedString(string: text, attributes: attributes)
-      
         
         return attributeString
     }

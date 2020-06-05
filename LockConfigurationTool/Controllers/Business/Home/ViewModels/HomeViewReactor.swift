@@ -31,11 +31,12 @@ final class HomeViewReactor: Reactor {
     
     enum Mutation {
         case setTime(String?, String?)
-        case setPageIndex(Int)
-        case setPageIndexToBegin(Int?)
+        case setPullUpLoading(Int)
+        case setPullToRefresh(Int)
         case setRequestFinished(Bool)
         case setNoMoreData(Bool)
-        case setDataList([ConfigureTaskListModel])
+        case setRefreshList([ConfigureTaskListModel])
+        case setLoadList([ConfigureTaskListModel])
     }
     
     var initialState: State
@@ -52,54 +53,51 @@ final class HomeViewReactor: Reactor {
         case let .pickTime(start, end):
             
             let share = self.request(pageIndex: self.currentState.pageIndex, start: start, end: end)
-                .distinctUntilChanged()
             
             let list = share.map { res in
-                Mutation.setDataList(res)
+                Mutation.setRefreshList(res)
             }
-            return Observable.concat([.just(.setTime(start, end)), list])
+            return Observable.concat([
+                .just(.setTime(start, end)),
+                list
+            ])
             
         case let .pullToRefresh(pageIndex):
             
             guard let index = pageIndex else {
-                return .just(.setDataList(currentState.dataList))
+                return .empty()
             }
             
             let share = self.request(pageIndex: index, start: self.currentState.startTime, end: self.currentState.endTime)
-                .distinctUntilChanged()
             
-            let list = share.map { res in
-                Mutation.setDataList(res)
+            let pageMutation = Observable.just(Mutation.setPullToRefresh(index))
+            
+            let list = share.map {
+                Mutation.setRefreshList($0)
             }
+            
             let isFinished = share.map { _ in
                 Mutation.setRequestFinished(true)
             }
             
-            return Observable.concat([.just(.setPageIndexToBegin(index)),
-                                      .just(.setNoMoreData(false)),
-                                      isFinished,
-                                      list
+            return Observable.concat([
+                pageMutation,
+                isFinished,
+                list
             ])
             
         case let .pullUpLoading(pageIndex):
             guard let index = pageIndex else {
-                return .just(.setDataList(currentState.dataList))
+                return .empty()
             }
             
             let share = self.request(pageIndex: self.currentState.pageIndex, start: self.currentState.startTime, end: self.currentState.endTime)
                 .distinctUntilChanged()
             
-            if self.currentState.noMoreData {
-                return .just(.setNoMoreData(true))
-            }
+            let pageMutation = Observable.just(Mutation.setPullUpLoading(index))
             
-            let list = share.map {[weak self] (items) -> Mutation in
-                guard var lastItems = self?.currentState.dataList else {
-                    return Mutation.setDataList(items)
-                }
-                lastItems += items
-                
-                return Mutation.setDataList(Array(Set(lastItems)))
+            let list = share.map {
+                Mutation.setLoadList($0)
             }
             
             let isFinished = share.map { _ in Mutation.setRequestFinished(true) }
@@ -109,7 +107,7 @@ final class HomeViewReactor: Reactor {
             }
             
             return Observable.concat([
-                .just(.setPageIndex(index)),
+                pageMutation,
                 isFinished,
                 noMore,
                 list
@@ -126,13 +124,11 @@ final class HomeViewReactor: Reactor {
             state.startTime = s
             state.endTime = e
             
-        case let .setPageIndex(index):
-            state.pageIndex += index
+        case let .setPullUpLoading(page):
+            state.pageIndex += page
             
-        case let .setPageIndexToBegin(index):
-            if let i = index {
-                state.pageIndex = i
-            }
+        case let .setPullToRefresh(page):
+            state.pageIndex = page
             
         case let .setRequestFinished(finished):
             state.requestFinished = finished
@@ -140,8 +136,17 @@ final class HomeViewReactor: Reactor {
         case let .setNoMoreData(noMore):
             state.noMoreData = noMore
             
-        case let .setDataList(list):
+        case let .setRefreshList(list):
             state.dataList = list
+            
+        case let .setLoadList(list):
+            state.dataList += list
+            let sort = Set(state.dataList).sorted { (a, b) -> Bool in
+                let aa = a.creatTime?.toInt() ?? 0
+                let bb = b.creatTime?.toInt() ?? -1
+                return aa > bb
+            }
+            state.dataList = sort
         }
         return state
     }

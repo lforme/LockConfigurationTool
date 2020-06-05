@@ -57,7 +57,8 @@ class HomeController: UIViewController, StoryboardView, NavigationSettingStyle {
     }
     
     func setupObserver() {
-        NotificationCenter.default.rx.notification(.refreshState)
+        NotificationCenter.default.rx
+            .notification(.refreshState)
             .takeUntil(rx.deallocated)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (notiObj) in
@@ -72,12 +73,16 @@ class HomeController: UIViewController, StoryboardView, NavigationSettingStyle {
     }
     
     func setupNavigationRightItems() {
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: addButton), UIBarButtonItem(customView: filterButton)]
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: filterButton),
+            UIBarButtonItem(customView: addButton)
+        ]
     }
     
     func setupUI() {
         tableView.tableFooterView = UIView()
         tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 250
         tableView.register(cellType: HomeListCell.self)
@@ -175,17 +180,21 @@ class HomeController: UIViewController, StoryboardView, NavigationSettingStyle {
             cell.phone.text = item.phoneNo
             cell.address.text = item.installAddress
             cell.date.text = item.creatTime
-            cell.configStatus.text = item.isOnline
-            if item.isOnlineNo == .some(.notConfigured) {
+            
+            if item.isOnlineNo == .notConfigured {
                 cell.statusIcon.isHidden = false
                 cell.configButton.isHidden = false
                 cell.deleteButton.isHidden = false
                 cell.editButton.isHidden = false
+                cell.configStatus.textColor = #colorLiteral(red: 1, green: 0.6745098039, blue: 0, alpha: 1)
+                cell.configStatus.text = "未配置门锁"
             } else {
                 cell.statusIcon.isHidden = true
                 cell.configButton.isHidden = true
                 cell.deleteButton.isHidden = true
                 cell.editButton.isHidden = true
+                cell.configStatus.textColor = ColorClassification.textOpaque78.value
+                cell.configStatus.text = "已配置门锁"
             }
             
             let deleteTap = cell.deleteButton.rx.tap
