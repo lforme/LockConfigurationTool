@@ -106,7 +106,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5s-Ps-WVk">
-                                                    <rect key="frame" x="147" y="329" width="120" height="40"/>
+                                                    <rect key="frame" x="147" y="289" width="120" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="DBx-Hx-sqb"/>
                                                         <constraint firstAttribute="height" constant="40" id="jzQ-43-vhN"/>
@@ -130,7 +130,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="b5s-Ps-WVk" firstAttribute="centerX" secondItem="CyT-0K-DeP" secondAttribute="centerX" id="Iz1-jn-cVu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="b5s-Ps-WVk" secondAttribute="bottom" constant="20" id="cC2-l7-sKC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="b5s-Ps-WVk" secondAttribute="bottom" constant="60" id="cC2-l7-sKC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="listview"/>
