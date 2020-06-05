@@ -39,7 +39,7 @@ class LoginViewController: UITableViewController, StoryboardView {
         super.viewDidLoad()
         setupUI()
         self.reactor = Reactor()
-        
+        setupTitleLabelGesture()
     }
     
     func setupTitleLabelGesture() {
