@@ -20,6 +20,8 @@ class LockStartScanningController: UIViewController, NavigationSettingStyle {
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var desLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var stepOneView: UIView!
+    @IBOutlet weak var stepTwoView: UIView!
     
     let vm = LockStartScanViewModel()
     var bindVM: LockBindViewModel!
@@ -92,7 +94,12 @@ class LockStartScanningController: UIViewController, NavigationSettingStyle {
                         
                     }
                 }
-            default: break
+            case .scaning:
+                self?.stepOneView.backgroundColor = ColorClassification.primary.value
+                self?.stepTwoView.backgroundColor = .white
+            default:
+                self?.stepOneView.backgroundColor = ColorClassification.primary.value
+                self?.stepTwoView.backgroundColor = .white
             }
             
             }, onError: { (error) in

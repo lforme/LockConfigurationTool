@@ -116,7 +116,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TGP-Z9-Hd0">
-                                <rect key="frame" x="151" y="135.5" width="112" height="4"/>
+                                <rect key="frame" x="171" y="135.5" width="72" height="4"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29B-uZ-nWa">
                                         <rect key="frame" x="0.0" y="0.0" width="32" height="4"/>
@@ -126,16 +126,8 @@
                                             <constraint firstAttribute="height" constant="4" id="gyn-xt-58O"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JwS-rg-kYb">
-                                        <rect key="frame" x="40" y="0.0" width="32" height="4"/>
-                                        <color key="backgroundColor" name="textPlaceholder"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="HQs-dh-VRO"/>
-                                            <constraint firstAttribute="height" constant="4" id="yBD-jO-Wlb"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ss-3z-8vJ">
-                                        <rect key="frame" x="80" y="0.0" width="32" height="4"/>
+                                        <rect key="frame" x="40" y="0.0" width="32" height="4"/>
                                         <color key="backgroundColor" name="textPlaceholder"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="22w-My-Hxe"/>
@@ -187,6 +179,8 @@
                         <outlet property="desLabel" destination="Xbq-Dz-zVc" id="Vd5-wh-XaB"/>
                         <outlet property="scanButton" destination="lpk-aA-5EW" id="xFo-Yj-pk0"/>
                         <outlet property="stepLabel" destination="UXA-m3-6kR" id="Lap-1w-8w2"/>
+                        <outlet property="stepOneView" destination="29B-uZ-nWa" id="FLu-1K-XS7"/>
+                        <outlet property="stepTwoView" destination="0ss-3z-8vJ" id="gEj-Tc-ymy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sba-Jv-WnY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
