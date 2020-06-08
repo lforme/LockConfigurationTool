@@ -42,7 +42,7 @@ class SelectLockTypeController: UITableViewController, NavigationSettingStyle {
     }
     
     func bind() {
-        BusinessAPI.requestMapJSONArray(.lockTypeList, classType: LockTypeModel.self, useCache: true, isPaginating: true)
+        BusinessAPI.requestMapJSONArray(.lockTypeList(channels: "00"), classType: LockTypeModel.self, useCache: true, isPaginating: true)
             .map { $0.compactMap { $0 } }
             .subscribe(onNext: {[weak self] (items) in
                 self?.dataSource = items

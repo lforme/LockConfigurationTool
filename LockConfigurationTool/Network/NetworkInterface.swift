@@ -43,5 +43,5 @@ enum BusinessInterface {
     // 绑定门锁
     case bind(lock: LockModel)
     // 获取选择门锁列表
-    case lockTypeList
+    case lockTypeList(channels: String)
 }

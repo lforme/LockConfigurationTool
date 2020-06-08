@@ -81,7 +81,7 @@ public class BluetoothPapa: NSObject {
     
     fileprivate func commonInit() {
         bluetoothManager = CBCentralManager(delegate: self, queue: centralQueue)
-        filterBluetoothNames = ["UOKO", "UOKO_BLE"]
+        filterBluetoothNames = ["UOKO", "UOKO_BLE", "KD_LOCK"]
     }
     
     fileprivate func getConnectedPeripherals() -> [CBPeripheral] {
