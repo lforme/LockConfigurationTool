@@ -14,7 +14,7 @@ extension UIImageView {
     
     func setUrl(_ string: String?) {
         
-        guard let str = string, str.count == 0 else {
+        guard let str = string, str.count != 0 else {
             return
         }
         
