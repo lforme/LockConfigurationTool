@@ -129,7 +129,10 @@ class LoginViewController: UITableViewController, StoryboardView {
         cell1.backgroundColor = ColorClassification.viewBackground.value
         cell2.backgroundColor = ColorClassification.viewBackground.value
         
-        versionLabel.text = ServerHost.shared.environment.description
+        if ServerHost.shared.environment == .dev {
+            versionLabel.text = ServerHost.shared.environment.description
+            
+        }
         
         phoneTextField.delegate = self
         

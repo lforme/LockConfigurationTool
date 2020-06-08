@@ -123,8 +123,7 @@ extension BusinessInterface: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .user,
-             .lockTypeList:
+        case .user:
             return .get
         case .hardwareLockConfigEdit:
             return .put
@@ -189,9 +188,6 @@ extension BusinessInterface: TargetType {
         case let .bind(lock):
             return lock.toJSON()
     
-        case let .lockTypeList(channels):
-            return ["channels": channels]
-            
         default:
             return nil
         }
