@@ -86,16 +86,18 @@ class LockStartScanningController: UIViewController, NavigationSettingStyle {
             case let .uploadInfoToServer(success):
                 if success {
                     HUD.flash(.label("绑定成功"), delay: 2)
+                    BluetoothPapa.shareInstance.reboot { (_) in
+                        
+                    }
                     NotificationCenter.default.post(name: .refreshState, object: NotificationRefreshType.configTask)
                     self?.navigationController?.popToRootViewController(animated: true)
                     
+                    
                 } else {
                     HUD.flash(.label("绑定失败"), delay: 2)
+                    BluetoothPapa.shareInstance.factoryReset { (_) in }
                 }
                 
-                BluetoothPapa.shareInstance.factoryReset { (_) in
-                    
-                }
             case .scaning:
                 self?.stepOneView.backgroundColor = ColorClassification.primary.value
                 self?.stepTwoView.backgroundColor = .white

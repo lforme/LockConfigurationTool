@@ -72,40 +72,36 @@ final class NetworkMetaDb {
 extension NetworkMetaDb {
     
     func save(_ value: Data, key: String) {
-        pthread_rwlock_trywrlock(&lock)
-        defer {
-            pthread_rwlock_unlock(&lock)
-        }
-        
-        queue.async {[weak self] in
-            guard let this = self else { return }
-            do {
-                var result = false
-                try this.db?.transaction {
-                    let filterTable = this.table.filter(this.key == key)
-                    if try this.checkDb().run(filterTable.update(
-                        this.key <- key,
-                        this.value <- value,
-                        this.accessTime <- Date(),
-                        this.userId <- LCUser.current().user?.id
-                    )) > 0 {
-                        result = true
-                        print("写入成功: \(result)")
-                    } else {
-                        let rowid = try this.checkDb().run(this.table.insert(
+        around {
+            queue.async {[weak self] in
+                guard let this = self else { return }
+                do {
+                    var result = false
+                    try this.db?.transaction {
+                        let filterTable = this.table.filter(this.key == key)
+                        if try this.checkDb().run(filterTable.update(
                             this.key <- key,
                             this.value <- value,
-                            this.accessTime <- Date(),
-                            this.expirationTime <- Date() + 7.days,
-                            this.userId <- LCUser.current().user?.id
-                        ))
-                        
-                        result = (rowid > Int64(0)) ? true : false
-                        print("写入成功: \(result)")
+                            this.userId <- LCUser.current().token?.userId
+                        )) > 0 {
+                            result = true
+                            print("写入成功: \(result)")
+                        } else {
+                            let rowid = try this.checkDb().run(this.table.insert(
+                                this.key <- key,
+                                this.value <- value,
+                                this.accessTime <- Date(),
+                                this.expirationTime <- Date() + 7.days,
+                                this.userId <- LCUser.current().token?.userId
+                            ))
+                            
+                            result = (rowid > Int64(0)) ? true : false
+                            print("写入成功: \(result)")
+                        }
                     }
+                } catch {
+                    print(error.localizedDescription)
                 }
-            } catch {
-                print(error.localizedDescription)
             }
         }
     }
@@ -113,85 +109,91 @@ extension NetworkMetaDb {
     @discardableResult
     func value(forKey key: String) -> Data? {
         
-        pthread_rwlock_trywrlock(&lock)
-        defer {
-            pthread_rwlock_unlock(&lock)
-        }
-        
-        var result: Data?
-        queue.sync(flags: .barrier) {
-            let query = self.table.select(self.table[*])
-                .filter(self.key == key)
-                .filter(self.userId == LCUser.current().user?.id)
-                .limit(1)
-            
-            do {
-                let rows = try self.checkDb().prepare(query)
+        around {
+            var result: Data?
+            queue.sync(flags: .barrier) {
+                let query = self.table.select(self.table[*])
+                    .filter(self.key == key)
+                    .filter(self.userId == LCUser.current().token?.userId)
+                    .limit(1)
                 
-                try self.db?.run(query.update(self.accessTime <- Date()))
-                
-                if let row = Array(rows).last {
-                    result = row[self.value]
+                do {
+                    let rows = try self.checkDb().prepare(query)
                     
-                } else {
+                    try self.db?.run(query.update(self.accessTime <- Date()))
+                    
+                    if let row = Array(rows).last {
+                        result = row[self.value]
+                        
+                    } else {
+                    }
+                } catch  {
+                    print(error.localizedDescription)
                 }
-            } catch  {
-                print(error.localizedDescription)
             }
+            return result
         }
-        return result
     }
     
     @discardableResult
     func deleteExpiredData() -> Bool {
-        var result = -1
-        let expired = self.table.select(self.table[*])
-            .filter(self.accessTime > self.expirationTime)
-        do {
-            result = try self.checkDb().run(expired.delete())
-        } catch {
-            
-            print("delete expiredData failed: \(error)")
-            result = -1
+        around {
+            var result = -1
+            let expired = self.table.select(self.table[*])
+                .filter(self.accessTime > self.expirationTime)
+            do {
+                result = try self.checkDb().run(expired.delete())
+            } catch {
+                
+                print("delete expiredData failed: \(error)")
+                result = -1
+            }
+            return result > 0
         }
-        return result > 0
     }
     
     @discardableResult
     func deleteValueBy(_ userId: String?) -> Bool {
-        pthread_rwlock_trywrlock(&lock)
-        defer {
-            pthread_rwlock_unlock(&lock)
-        }
-        var result = -1
-        queue.async {[unowned self] in
-            let value = self.table.filter(self.userId == userId)
-            do {
-                result = try self.checkDb().run(value.delete())
-                
-            } catch {
-                print("delete failed: \(error)")
-                result = -1
+        around {
+            var result = -1
+            queue.sync(flags: .barrier) {
+                let target = self.table.select(self.table[*])
+                    .filter(self.userId == userId)
+                do {
+                    result = try self.checkDb().run(target.delete())
+                    
+                } catch {
+                    print("delete failed: \(error)")
+                    result = -1
+                }
             }
+            return result > 0
         }
-        return result > 0
     }
     
     @discardableResult
     func deleteAll() -> Bool {
-        pthread_rwlock_trywrlock(&lock)
-        defer {
-            pthread_rwlock_unlock(&lock)
-        }
-        var result = -1
-        queue.sync(flags: .barrier) {
-            do {
-                result = try self.checkDb().run(self.table.delete())
-            } catch {
-                print("delete failed: \(error)")
-                result = -1
+        return around {
+            var result = -1
+            queue.sync(flags: .barrier) {
+                do {
+                    result = try self.checkDb().run(self.table.delete())
+                } catch {
+                    print("delete failed: \(error)")
+                    result = -1
+                }
             }
+            return result > 0
         }
-        return result > 0
+    }
+}
+
+
+extension NetworkMetaDb {
+    
+    func around<T>(_ closure: () -> T) -> T {
+        pthread_rwlock_trywrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
+        return closure()
     }
 }

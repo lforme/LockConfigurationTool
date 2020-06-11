@@ -19,8 +19,7 @@ class LCUser {
     private let changeableUserInfo = BehaviorRelay<UserModel?>(value: nil)
     private let changeableToken = BehaviorRelay<AccessTokenModel?>(value: nil)
     private let disposeBag = DisposeBag()
-    
-    let diskStorage = NetworkDiskStorage(autoCleanTrash: false, path: "network")
+    private var diskStorage: NetworkDiskStorage?
     
     private init() {
         lock.name = "com.LSLUser.lock"
@@ -78,11 +77,17 @@ class LCUser {
     func logout() {
         UIApplication.shared.applicationIconBadgeNumber = 0
         if let t = token?.accessToken {
-            AuthAPI.requestMapBool(.logout(token: t)).subscribe().disposed(by: disposeBag)
+            AuthAPI.requestMapBool(.logout(token: t))
+                .delaySubscription(.seconds(5), scheduler: MainScheduler.instance)
+                .subscribe()
+                .disposed(by: disposeBag)
         }
         
-        let deleteDb = diskStorage.deleteAll()
-        print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
+        if let userId = token?.userId {
+            diskStorage = NetworkDiskStorage(autoCleanTrash: false, path: "network")
+            let deleteDb = diskStorage?.deleteDataBy(id: userId) ?? false
+            print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
+        }
         
         Keys.allCases.forEach {
             print("已删除Key:\($0.rawValue)")
@@ -91,6 +96,10 @@ class LCUser {
         
         changeableUserInfo.accept(nil)
         changeableUserInfo.accept(nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {[weak self] in
+            self?.diskStorage = nil
+        }
     }
     
 }

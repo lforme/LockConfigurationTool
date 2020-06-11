@@ -58,11 +58,7 @@ class MyController: UITableViewController, NavigationSettingStyle {
                 return .empty()
             }
             
-            guard let token = LCUser.current().token?.accessToken else {
-                return .error(AppError.reason("发生未知错误, token is nil."))
-            }
-            
-            return AuthAPI.requestMapBool(.logout(token: token))
+            return .just(true)
         }
         
         logoutButton.rx.tap.flatMapLatest {[unowned self] (_) in
