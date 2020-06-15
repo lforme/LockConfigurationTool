@@ -73,7 +73,7 @@ extension NetworkMetaDb {
     
     func save(_ value: Data, key: String) {
         around {
-            queue.async {[weak self] in
+            queue.async(flags: .barrier) {[weak self] in
                 guard let this = self else { return }
                 do {
                     var result = false
@@ -103,6 +103,7 @@ extension NetworkMetaDb {
                     print(error.localizedDescription)
                 }
             }
+            
         }
     }
     
@@ -111,19 +112,20 @@ extension NetworkMetaDb {
         
         around {
             var result: Data?
-            queue.sync(flags: .barrier) {
-                let query = self.table.select(self.table[*])
-                    .filter(self.key == key)
-                    .filter(self.userId == LCUser.current().token?.userId)
+            queue.sync {[weak self] in
+                guard let this = self else { return }
+                let query = this.table.select(this.table[*])
+                    .filter(this.key == key)
+                    .filter(this.userId == LCUser.current().token?.userId)
                     .limit(1)
                 
                 do {
-                    let rows = try self.checkDb().prepare(query)
+                    let rows = try this.checkDb().prepare(query)
                     
-                    try self.db?.run(query.update(self.accessTime <- Date()))
+                    try this.db?.run(query.update(this.accessTime <- Date()))
                     
                     if let row = Array(rows).last {
-                        result = row[self.value]
+                        result = row[this.value]
                         
                     } else {
                     }
@@ -139,14 +141,17 @@ extension NetworkMetaDb {
     func deleteExpiredData() -> Bool {
         around {
             var result = -1
-            let expired = self.table.select(self.table[*])
-                .filter(self.accessTime > self.expirationTime)
-            do {
-                result = try self.checkDb().run(expired.delete())
-            } catch {
-                
-                print("delete expiredData failed: \(error)")
-                result = -1
+            queue.sync(flags: .barrier) {[weak self] in
+                guard let this = self else { return }
+                let expired = this.table.select(this.table[*])
+                    .filter(this.accessTime > this.expirationTime)
+                do {
+                    result = try this.checkDb().run(expired.delete())
+                } catch {
+                    
+                    print("delete expiredData failed: \(error)")
+                    result = -1
+                }
             }
             return result > 0
         }
@@ -156,11 +161,12 @@ extension NetworkMetaDb {
     func deleteValueBy(_ userId: String?) -> Bool {
         around {
             var result = -1
-            queue.sync(flags: .barrier) {
-                let target = self.table.select(self.table[*])
-                    .filter(self.userId == userId)
+            queue.sync(flags: .barrier) {[weak self] in
+                guard let this = self else { return }
+                let target = this.table.select(this.table[*])
+                    .filter(this.userId == userId)
                 do {
-                    result = try self.checkDb().run(target.delete())
+                    result = try this.checkDb().run(target.delete())
                     
                 } catch {
                     print("delete failed: \(error)")
@@ -175,9 +181,10 @@ extension NetworkMetaDb {
     func deleteAll() -> Bool {
         return around {
             var result = -1
-            queue.sync(flags: .barrier) {
+            queue.sync(flags: .barrier) {[weak self] in
+                guard let this = self else { return }
                 do {
-                    result = try self.checkDb().run(self.table.delete())
+                    result = try this.checkDb().run(this.table.delete())
                 } catch {
                     print("delete failed: \(error)")
                     result = -1
@@ -187,7 +194,6 @@ extension NetworkMetaDb {
         }
     }
 }
-
 
 extension NetworkMetaDb {
     

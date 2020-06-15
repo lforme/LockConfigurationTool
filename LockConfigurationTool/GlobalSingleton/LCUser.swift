@@ -76,9 +76,10 @@ class LCUser {
     
     func logout() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
         if let t = token?.accessToken {
             AuthAPI.requestMapBool(.logout(token: t))
-                .delaySubscription(.seconds(5), scheduler: MainScheduler.instance)
+                .delaySubscription(.seconds(2), scheduler: MainScheduler.instance)
                 .subscribe()
                 .disposed(by: disposeBag)
         }
@@ -97,7 +98,7 @@ class LCUser {
         changeableUserInfo.accept(nil)
         changeableUserInfo.accept(nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {[weak self] in
             self?.diskStorage = nil
         }
     }
