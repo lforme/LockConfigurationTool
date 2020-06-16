@@ -14,7 +14,6 @@ import RxCocoa
 class LCUser {
     
     // 私有
-    private let lock = NSRecursiveLock()
     private static let instance = LCUser()
     private let changeableUserInfo = BehaviorRelay<UserModel?>(value: nil)
     private let changeableToken = BehaviorRelay<AccessTokenModel?>(value: nil)
@@ -22,7 +21,6 @@ class LCUser {
     private var diskStorage: NetworkDiskStorage?
     
     private init() {
-        lock.name = "com.LSLUser.lock"
         changeableUserInfo.accept(self.user)
         changeableToken.accept(self.token)
     }
@@ -31,10 +29,8 @@ class LCUser {
     var token: AccessTokenModel? {
         set {
             guard let entity = newValue?.toJSONString() else { return }
-            lock.lock()
             LocalArchiver.save(key: LCUser.Keys.token.rawValue, value: entity)
             changeableToken.accept(newValue)
-            lock.unlock()
         }
         
         get {
@@ -47,10 +43,8 @@ class LCUser {
     var user: UserModel? {
         set {
             guard let entity = newValue?.toJSONString() else { return }
-            lock.lock()
             changeableUserInfo.accept(newValue)
             LocalArchiver.save(key: LCUser.Keys.userInfo.rawValue, value: entity)
-            lock.unlock()
         }
         get {
             let json = LocalArchiver.load(key: LCUser.Keys.userInfo.rawValue) as? String
@@ -85,7 +79,7 @@ class LCUser {
         }
         
         if let userId = token?.userId {
-            diskStorage = NetworkDiskStorage(autoCleanTrash: false, path: "network")
+            diskStorage = NetworkDiskStorage(autoCleanTrash: false, path: "lockConfigurationTool.network")
             let deleteDb = diskStorage?.deleteDataBy(id: userId) ?? false
             print("数据库网络缓存文件删除:\(deleteDb ? "成功" : "失败")")
         }
@@ -96,7 +90,7 @@ class LCUser {
         }
         
         changeableUserInfo.accept(nil)
-        changeableUserInfo.accept(nil)
+        changeableToken.accept(nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {[weak self] in
             self?.diskStorage = nil

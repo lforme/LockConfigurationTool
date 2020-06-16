@@ -32,7 +32,7 @@ final class RxMoyaProvider<Target>: MoyaProvider<Target> where Target: TargetTyp
         }
     }
     
-    fileprivate let diskCache = NetworkDiskStorage(autoCleanTrash: true, path: "network")
+    fileprivate let diskCache = NetworkDiskStorage(autoCleanTrash: true, path: "lockConfigurationTool.network")
     
     init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
          requestClosure: @escaping RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
